@@ -94,6 +94,10 @@ app.get('/weather/:zip', verifySupabaseToken,  async (req, res) => {
       }
 })
 
+app.listen(process.env.PORT || 8000, () => {
+  console.log(`Server is running on port 8000.`);
+});
+
 /* Public NoteBook functions and API */
 
 const fetchUserId = async (shareId) => {
@@ -157,8 +161,4 @@ app.get('/notebook/:id', async (req, res) => {
     }
 
 });
-
-app.listen(process.env.PORT || 8000, () => {
-    console.log(`Server is running on port 8000.`);
-  });
 
