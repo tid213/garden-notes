@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require("dotenv")
 const bodyParser = require("body-parser");
+const path = require('path');
 const jwt = require('jsonwebtoken');
 const { createClient } = require('@supabase/supabase-js');
 
@@ -94,10 +95,6 @@ app.get('/weather/:zip', verifySupabaseToken,  async (req, res) => {
       }
 })
 
-app.listen(process.env.PORT || 8000, () => {
-  console.log(`Server is running on port 8000.`);
-});
-
 /* Public NoteBook functions and API */
 
 const fetchUserId = async (shareId) => {
@@ -162,3 +159,10 @@ app.get('/notebook/:id', async (req, res) => {
 
 });
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+});
+
+app.listen(process.env.PORT || 8000, () => {
+  console.log(`Server is running on port 8000.`);
+});
