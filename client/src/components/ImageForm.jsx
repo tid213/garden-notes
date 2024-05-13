@@ -140,7 +140,7 @@ function ImageForm({imageFor, imageForId, close}){
             <label htmlFor="fileInput" className=" w-full bg-customLightGreen hover:bg-customMidGreen text-white font-bold py-2 px-4 rounded inline-block cursor-pointer">
                 {chooseImage}
             </label>
-            <button onClick={uploadFile} className="w-full lg:ml-4 mt-2 lg:mt-0 bg-customMidGreen hover:bg-customDarkGreen text-white font-bold py-2 px-4 rounded inline-block cursor-pointer">
+            <button onClick={uploadFile} className="w-full mt-2 bg-customMidGreen hover:bg-customDarkGreen text-white font-bold py-2 px-4 rounded inline-block cursor-pointer">
                 Upload
             </button>
             <div className="close-button cursor-pointer mt-8 w-full bg-customOrange hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline" onClick={() => close('close')}>Close</div>
