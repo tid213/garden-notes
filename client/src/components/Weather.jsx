@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import closeImage from '../images/x.svg';
 
-function Weather({session, zipCode}){
+
+function Weather({session, zipCode, closeButton}){
 
     const [weatherForecast, setWeatherForecast] = useState();
 
@@ -32,7 +34,9 @@ function Weather({session, zipCode}){
     };
       
     return(
-        <div>
+        <div className="bg-white mt-8 relative">
+          <div onClick={()=> closeButton(true)} className='absolute text-xl font-bold right-4 top-2 cursor-pointer'><img src={closeImage} className='h-4 w-4 '></img></div>
+            <div className="grid lg:grid-cols-7 p-4 gap-4">
             {weatherForecast?.map(function(weather){
                 return(
                     <div key={weather.number}>
@@ -41,6 +45,7 @@ function Weather({session, zipCode}){
                     </div>
                 )
             })}
+            </div>
         </div>
     )
 }

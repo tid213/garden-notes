@@ -8,11 +8,11 @@ import loadingImg from '../images/bouncing-circles.svg';
 import { useNavigate } from "react-router-dom";
 import tempImage from '../images/temp-image.png';
 import tempPlotImage from '../images/garden-plot.png';
-import { Link } from 'react-router-dom';
 import PlantView from "../components/PlantView";
 import ViewToggle from "../components/ViewToggle";
 import PlotView from "../components/PlotView";
 import NoteView from "../components/NoteView";
+import Weather from '../components/Weather';
 
 function Dashboard ({session}) {
 
@@ -303,6 +303,8 @@ function Dashboard ({session}) {
             return(<PlotView key={viewPlotID} session={session} plotID={viewPlotID} editButton={editButton} closeButton={closeButton} />)
         } else if(formView === "view note"){
             return(<NoteView noteID={viewNoteID} closeButton={closeButton} editButton={editButton} />)
+        } else if(formView === "show weather"){
+            return(<Weather session={session} closeButton={closeButton} zipCode={userInfo[0].zip_code} />)
         }
     }
 
@@ -325,6 +327,7 @@ function Dashboard ({session}) {
                     <div className="hidden lg:flex lg:items-center lg:justify-end lg:flex-1">
                         {/* Navigation Links */}
                         <nav className="flex space-x-4">
+                        <span onClick={()=> setFormView("show weather")} className="text-gray-900 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium">Weather</span>
                         <span onClick={()=> setFormView("add note")} className="text-gray-900 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium">Write Note</span>
                         <span onClick={()=> setFormView("add plant")} className="text-gray-900 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium">Add Plant</span>
                         <span onClick={()=> setFormView("add plot")} className="text-gray-900 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium">Add Plot</span>
@@ -358,7 +361,7 @@ function Dashboard ({session}) {
                 <div className="fixed top-12">{viewContainer()} </div>
                 <div className="">{<ViewToggle togglePPN={togglePPN} />}</div>
                 <div className="mt-4">
-                <div>{showPPN()}</div>
+                    <div>{showPPN()}</div>
                 </div> 
             </div>
         )
