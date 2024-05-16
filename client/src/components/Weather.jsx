@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
 import closeImage from '../images/x.svg';
+import clearDay from '../images/clear-day.svg'
+import clearNight from '../images/clear-night.svg'
+import partlyCloudyNight from '../images/partly-cloudy-night.svg'
+import rain from '../images/rain.svg'
+import partlyCloudyDay from '../images/partly-cloudy-day.svg'
 
 
 function Weather({session, zipCode, closeButton}){
@@ -32,15 +37,39 @@ function Weather({session, zipCode, closeButton}){
           console.error('Error:', error);
         }
     };
+
+    const weatherIconPicker = (data) => {
+      const icon = [];
+      if(data.name.includes('Tonight') || data.name.includes('Night')){
+          if(data.shortForecast.includes('Chance') && data.shortForecast.includes('Rain')){
+              return partlyCloudyNight;
+          } else if(data.shortForecast.includes('Rain')){
+              return rain;
+          } else{
+              return clearNight;
+          }
+      } else if(data.shortForecast.includes('Chance')){
+          return partlyCloudyDay;
+      } else if(data.shortForecast.includes('Showers')){
+          return rain;
+      }
+       else{
+          return clearDay
+      }
+  }
+
+    console.log(weatherForecast)
       
     return(
-        <div className="bg-white mt-8 relative">
+        <div className="bg-white mt-8 relative rounded-lg shadow-md border border-gray-200 inter">
           <div onClick={()=> closeButton(true)} className='absolute text-xl font-bold right-4 top-2 cursor-pointer'><img src={closeImage} className='h-4 w-4 '></img></div>
-            <div className="grid lg:grid-cols-7 p-4 gap-4">
-            {weatherForecast?.map(function(weather){
+            <div className="grid lg:grid-cols-7 grid-cols-3 p-4 gap-4 lg:gap-8">
+            {weatherForecast?.slice(0, 7).map(function(weather){
                 return(
-                    <div key={weather.number}>
+                    <div className="flex flex-col justify-center items-center" key={weather.number}>
                         <p>{weather.name}</p>
+                        <img className="w-12 h-12" src={weatherIconPicker(weather)}></img>
+                        <p className="text-xs">{weather.shortForecast}</p>
                         <p>{weather.temperature}</p>
                     </div>
                 )

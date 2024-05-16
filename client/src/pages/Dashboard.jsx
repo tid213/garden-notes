@@ -349,6 +349,7 @@ function Dashboard ({session}) {
                 {isOpen && (
                     <div className="lg:hidden">
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-md">
+                        <span onClick={()=> {setFormView("show weather"); setIsOpen(false);}} className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">Weather</span>
                         <span onClick={()=> {setFormView("add plant"); setIsOpen(false);}} className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">Add Plant</span>
                         <span onClick={()=> {setFormView("add plot");setIsOpen(false);}} className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">Add Plot</span>
                         <span onClick={()=> {setFormView("add note");setIsOpen(false);}} className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">Write Note</span>
