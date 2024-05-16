@@ -62,7 +62,7 @@ function Weather({session, zipCode, closeButton}){
       
     return(
         <div className="bg-white mt-8 relative rounded-lg shadow-md border border-gray-200 inter">
-          <div onClick={()=> closeButton(true)} className='absolute text-xl font-bold right-4 top-2 cursor-pointer'><img src={closeImage} className='h-4 w-4 '></img></div>
+          <div onClick={()=> closeButton(true)} className='absolute text-xl font-bold right-2 top-2 cursor-pointer'><img src={closeImage} className='h-4 w-4 '></img></div>
             <div className="grid lg:grid-cols-7 grid-cols-3 p-4 gap-4 lg:gap-8">
             {weatherForecast?.slice(0, 7).map(function(weather){
                 return(

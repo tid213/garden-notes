@@ -359,7 +359,7 @@ function Dashboard ({session}) {
                     </div>
                 )}
                 </header>
-                <div className="fixed top-12">{viewContainer()} </div>
+                <div className="absolute top-12">{viewContainer()} </div>
                 <div className="">{<ViewToggle togglePPN={togglePPN} />}</div>
                 <div className="mt-4">
                     <div>{showPPN()}</div>
