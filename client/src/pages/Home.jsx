@@ -91,7 +91,6 @@ function Home () {
                 </div>
             </section>
             <section className="container mx-auto py-8 ">
-                {/* Top row */}
                 <div className="flex justify-center">
                     <div className="text-center"><h1 className="text-5xl text-customDarkGreen inter font-bold mb-4 lg:mb-8 text-center">here to help<b className="text-customOrange">.</b></h1></div>
                 </div>
