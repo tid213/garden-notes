@@ -204,14 +204,14 @@ function Dashboard ({session}) {
             setViewPlotID(data)
             setFormView("view plot")
         }
-    }
+    };
 
     const setNoteID = (data) => {
         if(data){
             setViewNoteID(data)
             setFormView("view note")
         }
-    }
+    };
 
     const togglePPN = (data) => {
         setToggle(data);
@@ -282,7 +282,7 @@ function Dashboard ({session}) {
                 </div>
             )
         }
-    }
+    };
 
     const viewContainer = () => {
         if(formView === "add plant"){
@@ -306,7 +306,7 @@ function Dashboard ({session}) {
         } else if(formView === "show weather"){
             return(<Weather session={session} closeButton={closeButton} zipCode={userInfo[0].zip_code} />)
         }
-    }
+    };
 
     if(fullyRegistered===false){
         return(
