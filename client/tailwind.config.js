@@ -11,6 +11,9 @@ module.exports = {
         customBrown: '#483519',
         customOrange: '#f98638',
       },
+      spacing: {
+        '512': '32rem',
+      }
     },
   },
   plugins: [],
