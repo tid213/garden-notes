@@ -19,7 +19,7 @@ function Weather({session, zipCode, closeButton}){
         try {
           const token = session.access_token;
       
-          const response = await fetch('http://localhost:8000/weather/85296', {
+          const response = await fetch(`http://localhost:8000/weather/${zipCode}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',

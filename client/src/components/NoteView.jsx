@@ -72,8 +72,6 @@ function NoteView({noteID, closeButton, editButton}){
 
     }
 
-    console.log(noteData)
-
     return(
         <div className='w-screen'>
             {noteData ? 

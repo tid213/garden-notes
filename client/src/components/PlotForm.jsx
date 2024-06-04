@@ -14,7 +14,6 @@ const PlotForm = ({ plotId, session, closeButton, editButton }) => {
   }
 
   useEffect(() => {
-    console.log(plotId)
     const fetchPlotData = async () => {
       try {
         // Fetch plot data if editing existing plot
