@@ -11,7 +11,7 @@ dotenv.config()
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
+const geocodeKey = process.env.REACT_APP_GEOCODE_KEY;
 const app = express();
 
 app.use(cors());
@@ -82,7 +82,7 @@ const getWeatherData = async (latitude, longitude) => {
 app.get('/weather/:zip', verifySupabaseToken,  async (req, res) => {
     try {
         const zipCode = req.params.zip;
-        const locationResponse = await fetchJSON(`https://geocode.maps.co/search?q=${zipCode}&api_key=658b4b5356c79640180577zjhde4e6a`);
+        const locationResponse = await fetchJSON(`https://geocode.maps.co/search?q=${zipCode}&api_key=${geocodeKey}`);
         const coordinates = getCoordinates(locationResponse);
         const latitude = coordinates?.latitude;
         const longitude = coordinates?.longitude;
