@@ -60,7 +60,7 @@ function PlantView({session, plantID, closeButton, editButton, bgColor}){
         if(dateAndImageView === "prune" || dateAndImageView === "fertilize"){
             return(<DateSelect plantId={plantID}  pruneOrFert={dateAndImageView} close={dateAndImage} />)
         } else if(dateAndImageView === "upload"){
-            return(<ImageForm close={dateAndImage} imageForId={plantID} imageFor={"plant"} />)
+            return(<ImageForm session={session} close={dateAndImage} imageForId={plantID} imageFor={"plant"} />)
         }
     }
 

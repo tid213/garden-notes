@@ -2,10 +2,11 @@ import AWS from "aws-sdk";
 import { supabase } from '../supabaseClient'
 import { useState, useEffect } from "react";
 
-function ImageForm({imageFor, imageForId, close}){
+function ImageForm({imageFor, imageForId, close, session}){
     const [file, setFile] = useState(null);
     const [fileLink, setFileLink] = useState();
     const [chooseImage, setChooseImage] = useState("Choose Image File")
+    const UPLOAD_LIMIT = 20;
 
     useEffect(()=>{
         console.log(imageForId)
@@ -54,6 +55,17 @@ function ImageForm({imageFor, imageForId, close}){
           }
       }
 
+      const setUploadCounter = async () => {
+        const timestamp = new Date();
+        const oneHourAgo = new Date(timestamp.getTime() - 3600000);
+        const { data, error } = await supabase
+            .from('uploads')
+            .select('*')
+            .eq('user_id', session.user.id)
+            .gt('timestamp', oneHourAgo.toISOString());
+
+      }
+
     const createFileName = () => {
         const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         let result = '';
@@ -83,6 +95,24 @@ function ImageForm({imageFor, imageForId, close}){
       region: REGION,
     });
 
+    
+    // Check user upload limit
+
+    const timestamp = new Date();
+    const oneHourAgo = new Date(timestamp.getTime() - 3600000);
+    const { data, error } = await supabase
+        .from('uploads')
+        .select('*')
+        .eq('user_id', session.user.id)
+        .gt('timestamp', oneHourAgo.toISOString());
+
+      if (error) throw error;
+
+      if (data.length >= UPLOAD_LIMIT){
+        alert("Upload limit reached, try again in 1 hour.");
+        return;
+      }
+
     // Files Parameters
 
     const params = {
@@ -90,6 +120,7 @@ function ImageForm({imageFor, imageForId, close}){
       Key: fileLink,
       Body: file,
     };
+
 
     // Uploading file to s3
 
