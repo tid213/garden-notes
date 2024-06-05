@@ -147,8 +147,14 @@ function ImageForm({imageFor, imageForId, close, session}){
       
       // Fille successfully uploaded
       alert("File uploaded successfully.");
-      refreshPage()
     });
+
+    const { error: insertError } = await supabase
+      .from('uploads')
+      .insert([{ user_id: session.user.id, timestamp }]);
+
+      if (insertError) throw insertError;
+      refreshPage()
   };
   // Function to handle file and store it to file state
   const handleFileChange = (e) => {
