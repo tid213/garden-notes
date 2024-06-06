@@ -54,18 +54,7 @@ function ImageForm({imageFor, imageForId, close, session}){
             console.log("link added")
           }
       }
-
-      const setUploadCounter = async () => {
-        const timestamp = new Date();
-        const oneHourAgo = new Date(timestamp.getTime() - 3600000);
-        const { data, error } = await supabase
-            .from('uploads')
-            .select('*')
-            .eq('user_id', session.user.id)
-            .gt('timestamp', oneHourAgo.toISOString());
-
-      }
-
+      
     const createFileName = () => {
         const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         let result = '';
