@@ -54,7 +54,7 @@ function ImageForm({imageFor, imageForId, close, session}){
             console.log("link added")
           }
       }
-      
+
     const createFileName = () => {
         const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         let result = '';
@@ -109,8 +109,7 @@ function ImageForm({imageFor, imageForId, close, session}){
       Key: fileLink,
       Body: file,
     };
-
-
+    
     // Uploading file to s3
 
     var upload = s3
