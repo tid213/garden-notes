@@ -69,10 +69,7 @@ function Dashboard ({session}) {
     };
 
     const handleSignOut = async () => {
-        // Sign out the user
         await supabase.auth.signOut();
-    
-        // Redirect to the home page
         navigate('/');
       };
 
