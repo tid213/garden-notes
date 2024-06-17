@@ -26,7 +26,6 @@ app.get('/message', (req, res) => {
     res.json({ message: "Hello from server!" });
 });
 
-
 // Middleware to verify Supabase authentication token
 const verifySupabaseToken = async (req, res, next) => {
     const token = req.headers.authorization;
@@ -78,7 +77,6 @@ const getWeatherData = async (latitude, longitude) => {
   const weatherForecastJson = await weatherForecast.json();
   return weatherForecastJson.properties.periods;
 };
-
 
 app.get('/weather/:zip', verifySupabaseToken,  async (req, res) => {
     try {
