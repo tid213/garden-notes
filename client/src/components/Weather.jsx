@@ -12,10 +12,7 @@ function Weather({session, zipCode, closeButton}){
     const [weatherForecast, setWeatherForecast] = useState();
 
     useEffect(() => {
-      fetchData()
-    }, []);
-
-    const fetchData = async () => {
+      const fetchData = async () => {
         try {
           const token = session.access_token;
       
@@ -37,9 +34,10 @@ function Weather({session, zipCode, closeButton}){
           console.error('Error:', error);
         }
     };
+      fetchData()
+    }, [session.access_token, zipCode]);
 
     const weatherIconPicker = (data) => {
-      const icon = [];
       if(data.name.includes('Tonight') || data.name.includes('Night')){
           if(data.shortForecast.includes('Chance') && data.shortForecast.includes('Rain')){
               return partlyCloudyNight;
@@ -59,13 +57,13 @@ function Weather({session, zipCode, closeButton}){
   }      
     return(
         <div className="bg-white mt-8 relative rounded-lg shadow-md border border-gray-200 inter">
-          <div onClick={()=> closeButton(true)} className='absolute text-xl font-bold right-2 top-2 cursor-pointer'><img src={closeImage} className='h-4 w-4 '></img></div>
+          <div onClick={()=> closeButton(true)} className='absolute text-xl font-bold right-2 top-2 cursor-pointer'><img src={closeImage} className='h-4 w-4 ' alt="close button"></img></div>
             <div className="grid lg:grid-cols-7 grid-cols-3 p-4 gap-4 lg:gap-8">
             {weatherForecast?.slice(0, 7).map(function(weather){
                 return(
                     <div className="flex flex-col justify-center items-center" key={weather.number}>
                         <p>{weather.name}</p>
-                        <img className="w-12 h-12" src={weatherIconPicker(weather)}></img>
+                        <img className="w-12 h-12" src={weatherIconPicker(weather)} alt="current weather icon"></img>
                         <p className="text-xs">{weather.shortForecast}</p>
                         <p>{weather.temperature}</p>
                     </div>

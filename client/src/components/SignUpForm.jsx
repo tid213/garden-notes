@@ -13,7 +13,7 @@ const SignUpForm = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const { user, error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email,
         password,
       });
@@ -30,9 +30,12 @@ const SignUpForm = () => {
 
   const handleGoogleSignIn = async (event) => {
     event.preventDefault();
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
     })
+    if (error) {
+      throw error;
+    }
   }
 
   return (

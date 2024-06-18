@@ -17,7 +17,6 @@ import Weather from '../components/Weather';
 function Dashboard ({session}) {
 
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(true);
     const [fullyRegistered, setFullyRegistered] = useState(false);
     const [regCheck, setRegCheck] = useState(true);
     const [userInfo, setUserInfo] = useState();
@@ -37,9 +36,95 @@ function Dashboard ({session}) {
     const [viewNoteID, setViewNoteID] = useState("");
     const colors = ["bg-lime-200","bg-lime-200", "bg-amber-200", "bg-orange-200"];
     const [colorIndices, setColorIndices] = useState([]);
-    const [selectedColor, setSelectedColor] = useState();
 
     useEffect(()=>{
+        const fetchUserInfo = async () => {
+            try {
+                setLoadingUserInfo(true);
+                const { data, error } = await supabase
+                  .from('profiles')
+                  .select('*')
+                  .eq('id', session.user.id);
+        
+                if (error) {
+                  throw error;
+                }
+                if(data[0].username != null){
+                    setTimeout(function(){
+                        setFullyRegistered(true)
+                        setRegCheck(false)
+                    }, 1000)
+                    
+                }
+    
+                setUserInfo(data || []);
+                setLoadingUserInfo(false);
+              } catch (error) {
+                console.error('Error fetching plants:', error.message);
+                setLoadingUserInfo(false);
+              }
+        };
+    
+        const fetchPlantData = async () => {
+            try {
+                setLoadingPlantData(true);
+                const { data, error } = await supabase
+                  .from('plants')
+                  .select('*')
+                  .eq('user_id', session.user.id);
+        
+                if (error) {
+                  throw error;
+                }
+    
+                setPlantData(data || []);
+                setLoadingPlantData(false);
+              } catch (error) {
+                console.error('Error fetching plants:', error.message);
+                setLoadingPlantData(false);
+              }
+        };
+    
+        const fetchPlotData = async () => {
+            try {
+                setLoadingPlotData(true);
+                const { data, error } = await supabase
+                  .from('plots')
+                  .select('*')
+                  .eq('user_id', session.user.id);
+        
+                if (error) {
+                  throw error;
+                }
+    
+                setPlotData(data || []);
+                setLoadingPlotData(false);
+              } catch (error) {
+                console.error('Error fetching plants:', error.message);
+                setLoadingPlotData(false);
+              }
+        };
+    
+        const fetchNoteData = async () => {
+            try {
+                setLoadingNoteData(true);
+                const { data, error } = await supabase
+                  .from('notes')
+                  .select('*')
+                  .eq('user_id', session.user.id);
+        
+                if (error) {
+                  throw error;
+                }
+    
+                setNoteData(data || []);
+                setLoadingNoteData(false);
+              } catch (error) {
+                console.error('Error fetching plants:', error.message);
+                setLoadingNoteData(false);
+              }
+        };
+
         fetchUserInfo();
         fetchPlantData();
         fetchPlotData();
@@ -58,11 +143,24 @@ function Dashboard ({session}) {
           return () => {
             window.removeEventListener('scroll', handleScroll);
           };
-    }, [])
+    }, [session.user.id])
 
     useEffect(() => {
+        const generateRandomColorIndices = () => {
+            if(toggle === "notes"){
+                const randomIndices = Array.from({ length: noteData.length }, () => Math.floor(Math.random() * colors.length));
+                setColorIndices(randomIndices);
+            } else if(toggle === "plants" && plantData){
+                const randomIndices = Array.from({ length: plantData.length }, () => Math.floor(Math.random() * colors.length));
+                setColorIndices(randomIndices);
+            } else if(toggle === "plots"){
+                const randomIndices = Array.from({ length: plotData.length }, () => Math.floor(Math.random() * colors.length));
+                setColorIndices(randomIndices);
+            }
+        };
+        
         generateRandomColorIndices();
-    }, [noteData, plantData, plotData, toggle]);
+    }, [noteData, plantData, plotData, toggle, colors.length]);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -72,106 +170,6 @@ function Dashboard ({session}) {
         await supabase.auth.signOut();
         navigate('/');
       };
-
-    const fetchUserInfo = async () => {
-        try {
-            setLoadingUserInfo(true);
-            const { data, error } = await supabase
-              .from('profiles')
-              .select('*')
-              .eq('id', session.user.id);
-    
-            if (error) {
-              throw error;
-            }
-            if(data[0].username != null){
-                setTimeout(function(){
-                    setFullyRegistered(true)
-                    setRegCheck(false)
-                }, 1000)
-                
-            }
-
-            setUserInfo(data || []);
-            setLoadingUserInfo(false);
-          } catch (error) {
-            console.error('Error fetching plants:', error.message);
-            setLoadingUserInfo(false);
-          }
-    };
-
-    const fetchPlantData = async () => {
-        try {
-            setLoadingPlantData(true);
-            const { data, error } = await supabase
-              .from('plants')
-              .select('*')
-              .eq('user_id', session.user.id);
-    
-            if (error) {
-              throw error;
-            }
-
-            setPlantData(data || []);
-            setLoadingPlantData(false);
-          } catch (error) {
-            console.error('Error fetching plants:', error.message);
-            setLoadingPlantData(false);
-          }
-    };
-
-    const fetchPlotData = async () => {
-        try {
-            setLoadingPlotData(true);
-            const { data, error } = await supabase
-              .from('plots')
-              .select('*')
-              .eq('user_id', session.user.id);
-    
-            if (error) {
-              throw error;
-            }
-
-            setPlotData(data || []);
-            setLoadingPlotData(false);
-          } catch (error) {
-            console.error('Error fetching plants:', error.message);
-            setLoadingPlotData(false);
-          }
-    };
-
-    const fetchNoteData = async () => {
-        try {
-            setLoadingNoteData(true);
-            const { data, error } = await supabase
-              .from('notes')
-              .select('*')
-              .eq('user_id', session.user.id);
-    
-            if (error) {
-              throw error;
-            }
-
-            setNoteData(data || []);
-            setLoadingNoteData(false);
-          } catch (error) {
-            console.error('Error fetching plants:', error.message);
-            setLoadingNoteData(false);
-          }
-    };
-
-    const generateRandomColorIndices = () => {
-        if(toggle === "notes"){
-            const randomIndices = Array.from({ length: noteData.length }, () => Math.floor(Math.random() * colors.length));
-            setColorIndices(randomIndices);
-        } else if(toggle === "plants" && plantData){
-            const randomIndices = Array.from({ length: plantData.length }, () => Math.floor(Math.random() * colors.length));
-            setColorIndices(randomIndices);
-        } else if(toggle === "plots"){
-            const randomIndices = Array.from({ length: plotData.length }, () => Math.floor(Math.random() * colors.length));
-            setColorIndices(randomIndices);
-        }
-    };
 
     const closeButton = (data) => {
         if(data === true){
@@ -221,7 +219,7 @@ function Dashboard ({session}) {
     };
 
     const showPPN = () => {
-        if(toggle === "plants"){
+        if(toggle === "plants" && !loadingPlantData){
             return(
                 <div className="grid lg:grid-cols-4 grid-cols-2 lg:gap-8 gap-4 ml-4 mr-4">
                     {plantData.slice().reverse().map(function(data, index) {
@@ -231,8 +229,8 @@ function Dashboard ({session}) {
                                 className={`p-4 rounded-sm shadow-md cursor-pointer ${colors[colorIndices[index]]}`}>
                                     <div className='lg:h-52 lg:w-52 h-40 w-38 bg-cover bg-center overflow-hidden flex items-center'>
                                     {data.plant_image ? 
-                                    <img className="w-full h-full object-cover overflow-hidden" src={data.plant_image} /> : 
-                                    <img className='w-full h-full object-cover overflow-hidden' src={tempImage}></img>}
+                                    <img className="w-full h-full object-cover overflow-hidden" src={data.plant_image} alt="User's plant" /> : 
+                                    <img className='w-full h-full object-cover overflow-hidden' src={tempImage} alt="place holder for user's plant"></img>}
                                     </div>
                                     <p className="text-black font-medium text-xl mt-4">{data.plant_name}</p>
                                 </div>
@@ -240,7 +238,7 @@ function Dashboard ({session}) {
                         })}
                 </div>
             )
-        } else if(toggle === "plots"){
+        } else if(toggle === "plots" && !loadingPlotData){
             return(
                 <div className="grid lg:grid-cols-4 grid-cols-2 lg:gap-8 gap-4 ml-4 mr-4">
                     {plotData.slice().reverse().map(function(data, index) {
@@ -250,8 +248,8 @@ function Dashboard ({session}) {
                                 className={`p-4 rounded-sm shadow-md cursor-pointer ${colors[colorIndices[index]]}`}>
                                     <div className='lg:h-52 lg:w-52 h-40 w-38 bg-cover bg-center overflow-hidden flex items-center'>
                                     {data.plot_image ? 
-                                    <img className="w-full h-full object-cover overflow-hidden" src={data.plot_image} /> : 
-                                    <img className='w-full h-full object-cover overflow-hidden' src={tempPlotImage}></img>}
+                                    <img className="w-full h-full object-cover overflow-hidden" src={data.plot_image} alt="User's plot" /> : 
+                                    <img className='w-full h-full object-cover overflow-hidden' src={tempPlotImage} alt="place holder for user's plot"></img>}
                                     </div>
                                     <p className="text-black font-medium text-xl mt-4">{data.name}</p>
                                 </div>
@@ -259,7 +257,7 @@ function Dashboard ({session}) {
                         })}
                 </div>
             )
-        } else if(toggle === "notes"){
+        } else if(toggle === "notes" && !loadingNoteData){
             return(
                 <div className="grid lg:grid-cols-5 grid-cols-2 lg:gap-4 gap-4 ml-4 mr-4">
                     {noteData.slice().reverse().map(function(data, index) {
@@ -295,7 +293,7 @@ function Dashboard ({session}) {
         } else if(formView === "edit plot"){
             return(<PlotForm session={session} editButton={editButton} closeButton={closeButton} plotId={viewPlotID} />)
         } else if(formView === "view plant"){
-            return(<PlantView key={viewPlantID} bgColor={selectedColor} session={session} plantID={viewPlantID} editButton={editButton} closeButton={closeButton} />)
+            return(<PlantView key={viewPlantID} session={session} plantID={viewPlantID} editButton={editButton} closeButton={closeButton} />)
         } else if(formView === "view plot"){
             return(<PlotView key={viewPlotID} session={session} plotID={viewPlotID} editButton={editButton} closeButton={closeButton} />)
         } else if(formView === "view note"){
@@ -308,7 +306,7 @@ function Dashboard ({session}) {
     if(fullyRegistered===false){
         return(
             <div className="min-h-screen flex flex-col justify-center items-center bg-customLightBrown">
-                {regCheck ? (<img src={loadingImg} className="w-16 h-16"></img>):(<AccountForm session={session}/>)}
+                {regCheck ? (<img src={loadingImg} className="w-16 h-16" alt="loading dots bouncing"></img>):(<AccountForm session={session}/>)}
             </div>
         )
     } else{
@@ -319,7 +317,7 @@ function Dashboard ({session}) {
                     <div className="flex justify-between h-16">
                     <div className="flex-shrink-0 flex items-center">
                         {/* Logo */}
-                        <h1 className="text-base font-normal inter text-customBrown">gardennotes<b className="text-customOrange">.</b><b className="text-customMidGreen">{userInfo[0].username}</b></h1>
+                        <h1 className="text-base font-normal inter text-customBrown">gardennotes<b className="text-customOrange">.</b><b className="text-customMidGreen">{!loadingUserInfo ? userInfo[0].username : " "}</b></h1>
                     </div>
                     <div className="hidden lg:flex lg:items-center lg:justify-end lg:flex-1">
                         {/* Navigation Links */}
