@@ -14,58 +14,56 @@ function PlotView({plotID, session, closeButton, editButton}){
     const [imageView, setImageView] = useState("image");
     const [showConfirmation, setShowConfirmation] = useState(false);
 
-    const fetchPlotData = async () =>{
-        try{
-            if(plotID){
-                const { data, error } = await supabase
-                .from('plots')
-                .select('*')
-                .eq('id', plotID)
-                if (error) {
-                    throw error;
-                } else{
-
-                }
-                setPlotData(data);
-            }
-        }catch (error) {
-            console.error('Error fetching data:', error.message);
-          }
-    }
-
-    const createPlantList = async () => {
-        if(plotData){
-            const { data, error } = await supabase
-                .from('plants')
-                .select('id, plant_name')
-                .eq('user_id', session.user.id)
-                .eq('plant_plot', plotData[0].name)
-            if (error) {
-                throw error;
-            }
-            setPlantList(data);
-        }
-    }
-
     const refreshPage = ()=>{
         window.location.reload();
        }
 
     useEffect(()=>{
+        const fetchPlotData = async () =>{
+            try{
+                if(plotID){
+                    const { data, error } = await supabase
+                    .from('plots')
+                    .select('*')
+                    .eq('id', plotID)
+                    if (error) {
+                        throw error;
+                    } else{
+    
+                    }
+                    setPlotData(data);
+                }
+            }catch (error) {
+                console.error('Error fetching data:', error.message);
+              }
+        }
         fetchPlotData();
     }, [plotID])
 
     useEffect(() => {
+        const createPlantList = async () => {
+            if(plotData){
+                const { data, error } = await supabase
+                    .from('plants')
+                    .select('id, plant_name')
+                    .eq('user_id', session.user.id)
+                    .eq('plant_plot', plotData[0].name)
+                if (error) {
+                    throw error;
+                }
+                setPlantList(data);
+            }
+        }
         if (plotData) {
             createPlantList();
         }
-    }, [plotData]);
+    }, [plotData, session.user.id]);
 
     const showImage = () => {
         if(plotData[0].plot_image){
-            return(<img src={plotData[0].plot_image}></img>);
+            return(<img src={plotData[0].plot_image} alt="user's plot"></img>);
         } else{
-            return(<img src={tempImage}></img>);
+            return(<img src={tempImage} alt="place holder for user's plot"></img>);
         }
     };
 
@@ -97,7 +95,7 @@ function PlotView({plotID, session, closeButton, editButton}){
         <div>
             {plotData ? 
                 <div className='relative w-full inter mt-8 lg:max-w-4xl max-w-sm md:max-w-md mx-auto p-6 bg-lime-50 border border-gray-200 rounded-lg shadow-md'>
-                    <div onClick={()=> closeButton(true)} className='absolute text-xl font-bold right-4 top-2 cursor-pointer'><img src={closeImage} className='w-4 h-4'></img></div>
+                    <div onClick={()=> closeButton(true)} className='absolute text-xl font-bold right-4 top-2 cursor-pointer'><img src={closeImage} className='w-4 h-4' alt="close button"></img></div>
                     <div className='lg:grid grid-cols-4 lg:grid-cols-9 grid-flow-row gap-4'>
                         <div className='lg:col-span-9'>
                             <h1 className="text-2xl font-normal inter text-customBrown">
@@ -136,17 +134,17 @@ function PlotView({plotID, session, closeButton, editButton}){
                         <div className='lg:col-span-2 lg:flex lg:justify-start h-fit lg:items-center lg:flex-nowrap lg:flex-col  gap-4 lg:border-l-2 lg:border-gray-100'>
                             <div onClick={()=>editButton("plot")}
                                 className='lg:w-5/12 lg:mt-1 lg:p-0 p-4 mt-1 h-12 w-auto cursor-pointer flex justify-center items-center lg:border-0 hover:border-b-2 lg:shadow-none shadow-md'>
-                                <img src={editImage} className='w-4 h-4'></img>
+                                <img src={editImage} className='w-4 h-4' alt="edit button"></img>
                                 <p className='text-normal font-normal text-black p-2'>Edit</p>
                             </div>
                             <div onClick={()=>setImageView("upload")}
                                 className='lg:w-5/12 lg:mt-1 lg:p-0 p-4 mt-1 h-12 w-auto cursor-pointer flex justify-center items-center lg:border-0 hover:border-b-2 lg:shadow-none shadow-md'>
-                                <img src={AddImageIcon} className='w-4 h-4'></img>
+                                <img src={AddImageIcon} className='w-4 h-4' alt="upload button"></img>
                                 <p className='text-normal font-normal text-black p-2'>Image</p>
                             </div>
                             <div onClick={() => setShowConfirmation(true)}
                                 className='lg:w-fit col-span-1 w-full m-auto lg:mt-1 lg:p-0 p-1 mt-1 bg-white lg:bg-transparent w-auto cursor-pointer flex justify-center items-center border lg:border-0 hover:border-b-2 lg:shadow-none shadow-md'>
-                                <img src={trashImage} className='w-4 h-4'></img>
+                                <img src={trashImage} className='w-4 h-4' alt="delete button"></img>
                                 <p className='text-normal font-normal text-black p-2'>Delete</p>
                             </div>
                             {showConfirmation && (

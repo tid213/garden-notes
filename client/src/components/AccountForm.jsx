@@ -12,34 +12,34 @@ const AccountForm = ({session, closeButton}) => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetchProfile();
-  }, []);
-  const fetchProfile = async () => {
-    try {
-      setLoading(true);
-      if (session) {
-        const { data, error } = await supabase
-          .from('profiles')
-          .select()
-          .eq('id', session.user.id)
-        if (error) {
-          throw error;
+    const fetchProfile = async () => {
+      try {
+        setLoading(true);
+        if (session) {
+          const { data, error } = await supabase
+            .from('profiles')
+            .select()
+            .eq('id', session.user.id)
+          if (error) {
+            throw error;
+          }
+          if (data) {
+            setUsername(data[0].username || '');
+            setWebsite(data[0].website || '');
+            setAvatarUrl(data[0].avatar_url || '');
+            setZone(data[0].zone || '');
+            setZipCode(data[0].zip_code || '');
+          }
         }
-        if (data) {
-          setUsername(data[0].username || '');
-          setWebsite(data[0].website || '');
-          setAvatarUrl(data[0].avatar_url || '');
-          setZone(data[0].zone || '');
-          setZipCode(data[0].zip_code || '');
-        }
+      } catch (error) {
+        console.error('Error fetching profile:', error.message);
+        setMessage('Error fetching profile. Please try again.');
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      console.error('Error fetching profile:', error.message);
-      setMessage('Error fetching profile. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
+    fetchProfile();
+  }, [session.user.id, session]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -72,7 +72,7 @@ const AccountForm = ({session, closeButton}) => {
 
   return (
     <div className="inter relative mt-12 max-w-sm lg:w-96 mx-auto p-6 bg-white rounded-lg shadow-md border border-gray-200">
-      <div onClick={()=> closeButton(true)} className='absolute text-xl font-bold right-4 top-2 cursor-pointer'><img src={closeImage} className='h-4 w-4 '></img></div>
+      <div onClick={()=> closeButton(true)} className='absolute text-xl font-bold right-4 top-2 cursor-pointer'><img src={closeImage} className='h-4 w-4 ' alt="close button"></img></div>
       <h2 className="text-2xl font-normal mb-4 text-customMidGreen">Account</h2>
       <form onSubmit={handleSubmit} >
         <div className='mb-4'>

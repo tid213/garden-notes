@@ -34,7 +34,7 @@ function PlantView({session, plantID, closeButton, editButton, bgColor}){
               }
         }
         fetchPlantData();
-    }, [])
+    }, [plantID])
 
     const dateAndImage = (data) => {
         if(data === "fertilize"){
@@ -50,9 +50,9 @@ function PlantView({session, plantID, closeButton, editButton, bgColor}){
 
     const imageDisplay = () => {
         if(plantData[0].plant_image){
-            return(<img src={plantData[0].plant_image}></img>)
+            return(<img src={plantData[0].plant_image} alt="user's plant"></img>)
         } else{
-            return(<img src={tempImage}></img>)
+            return(<img src={tempImage} alt="holder for user's plant"></img>)
         }
     }
 
@@ -90,7 +90,7 @@ function PlantView({session, plantID, closeButton, editButton, bgColor}){
         <div>
             {plantData ? 
                 <div className={`relative w-full inter mt-8 lg:mt-8 lg:max-w-4xl max-w-sm md:max-w-md mx-auto p-6 border border-gray-200 rounded-lg shadow-md bg-white`}>
-                <div onClick={()=> closeButton(true)} className='absolute text-xl font-bold right-4 top-2 cursor-pointer'><img src={closeImage} className='h-4 w-4 '></img></div>
+                <div onClick={()=> closeButton(true)} className='absolute text-xl font-bold right-4 top-2 cursor-pointer'><img src={closeImage} className='h-4 w-4 ' alt="close button"></img></div>
                 <div className='lg:grid grid-cols-4 lg:grid-cols-9 grid-flow-row gap-4'>
                         <div className='lg:col-span-7'>
                             <h1 className="text-2xl font-bold inter text-customBrown">
@@ -101,7 +101,7 @@ function PlantView({session, plantID, closeButton, editButton, bgColor}){
                             </h1>
                         </div>
                         <div className='lg:col-span-4 lg:w-96 lg:h-96 bg-transparent lg:flex bg-cover bg-center overflow-hidden flex justify-center items-center'>
-                            {dateAndImageView != "image" ? 
+                            {dateAndImageView !== "image" ? 
                                 dateOrUpload() : imageDisplay()}
                         </div>
                         <div className='lg:col-span-3'>
@@ -121,27 +121,27 @@ function PlantView({session, plantID, closeButton, editButton, bgColor}){
                         <div className='lg:col-span-2 h-fit flex justify-center lg:justify-start lg:flex-nowrap flex-wrap lg:flex lg:flex-col gap-4 lg:border-l-2 lg:border-gray-100'>
                             <div onClick={()=>editButton("plant")}
                                 className='lg:w-fit w-full m-auto lg:mt-1 lg:p-0 p-1 mt-1 bg-white lg:bg-transparent w-auto cursor-pointer flex justify-center items-center border lg:border-0 hover:border-b-2 lg:shadow-none shadow-md'>
-                                <img src={editImage} className='w-4 h-4'></img>
+                                <img src={editImage} className='w-4 h-4' alt="edit plant"></img>
                                 <p className='text-normal font-normal text-black p-2'>Edit</p>
                             </div>
                             <div onClick={()=>setDateAndImageView("prune")} 
                                 className='lg:w-fit w-full m-auto lg:p-0 p-1 mt-1 bg-white lg:bg-transparent cursor-pointer flex justify-center items-center border lg:border-0 hover:border-b-2 lg:shadow-none shadow-md'>
-                                <img src={shearsImage} className='w-4 h-4'></img>
+                                <img src={shearsImage} className='w-4 h-4' alt="set prune date"></img>
                                 <p className='text-normal font-normal text-black p-2'>Prune</p>
                             </div>
                             <div onClick={()=>setDateAndImageView("fertilize")}
                                 className='lg:w-fit w-full m-auto lg:p-0 p-1 mt-1 cursor-pointer bg-white lg:bg-transparent flex justify-center items-center border lg:border-0 hover:border-b-2 lg:shadow-none shadow-md'>
-                                <img src={fertilizerImage} className='w-4 h-4'></img>
+                                <img src={fertilizerImage} className='w-4 h-4' alt="set fertilize date"></img>
                                 <p className='text-normal font-normal text-black p-2'>Fertilize</p>
                             </div>
                             <div onClick={()=>setDateAndImageView("upload")} 
                                 className='lg:w-fit w-full m-auto lg:p-0 p-1 mt-1 cursor-pointer bg-whitelg:bg-transparent flex justify-center items-center border lg:border-0 hover:border-b-2 lg:shadow-none shadow-md'>
-                                <img src={AddImageIcon} className='w-4 h-4'></img>
+                                <img src={AddImageIcon} className='w-4 h-4' alt="upload"></img>
                                 <p className='text-normal font-normal text-black p-2'>Image</p>
                             </div>
                             <div onClick={() => setShowConfirmation(true)}
                                 className='lg:w-fit col-span-1 w-full m-auto lg:mt-1 lg:p-0 p-1 mt-1 bg-white lg:bg-transparent w-auto cursor-pointer flex justify-center items-center border lg:border-0 hover:border-b-2 lg:shadow-none shadow-md'>
-                                <img src={trashImage} className='w-4 h-4'></img>
+                                <img src={trashImage} className='w-4 h-4' alt="delete plant"></img>
                                 <p className='text-normal font-normal text-black p-2'>Delete</p>
                             </div>
                             {showConfirmation && (

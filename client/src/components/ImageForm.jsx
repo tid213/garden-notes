@@ -1,16 +1,12 @@
 import AWS from "aws-sdk";
 import { supabase } from '../supabaseClient'
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function ImageForm({imageFor, imageForId, close, session}){
     const [file, setFile] = useState(null);
     const [fileLink, setFileLink] = useState();
     const [chooseImage, setChooseImage] = useState("Choose Image File")
     const UPLOAD_LIMIT = 20;
-
-    useEffect(()=>{
-        console.log(imageForId)
-    }, [])
 
     const refreshPage = ()=>{
       window.location.reload();
