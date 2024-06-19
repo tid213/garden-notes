@@ -44,7 +44,6 @@ const verifySupabaseToken = async (req, res, next) => {
     
       // If user is authenticated, you can proceed with the request
       req.user = data;
-      console.log(data)
       next();
     } catch (error) {
       console.error('Error verifying Supabase token:', error);
