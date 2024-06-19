@@ -1,4 +1,5 @@
 const express = require('express');
+const expressStaticGzip = require("express-static-gzip");
 const cors = require('cors');
 const dotenv = require("dotenv")
 const bodyParser = require("body-parser");
@@ -159,7 +160,7 @@ app.get('/notebook/:id', async (req, res) => {
 
 if (process.env.NODE_ENV === 'production') {
   // Exprees will serve up production assets
-  app.use(express.static('client/build'));
+  app.use(expressStaticGzip('client/build'));
 
   // Express serve up index.html file if it doesn't recognize route
   const path = require('path');
