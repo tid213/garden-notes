@@ -74,19 +74,19 @@ function Home () {
             </header>
             <section className=" min-h-screen flex flex-col mt-16">
                 <div className="lg:flex lg:items-center items-center">
-                    <div className="lg:w-6/12">
+                    <div className="lg:w-6/12 w-full">
                         <img className="mb-4 lg:mt-4 lg:mb-0 lg:mr-8  max-w-sm mx-auto lg:max-w-lg" src={landingImage} alt="Two people gardening" />
                     </div>
-                    <div className="lg:w-6/12">
-                    <p className="inter font-normal mb-4 max-w-prose px-8 text-2xl text-customDarkGreen text-center ">Welcome to</p>
-                    <h1 className="text-5xl text-customDarkGreen inter font-bold mb-4 lg:mb-8 text-center">gardennotes<b className="text-customOrange">.</b><b className="text-customMidGreen">me</b></h1>
-                    <p className="inter font-light max-w-prose px-8 text-lg text-black text-center ">
-                    Your all-in-one solution for plant lovers. Whether you're a seasoned gardener or just starting out, gardennotes.me helps you keep track of all your plants effortlessly.
-                    </p>
-                    <div className="flex flex-col w-full lg:justify-center items-center mt-6 lg:flex-row">
-                        <Link to="/signin" className="inline-block inter bg-customMidGreen w-8/12 lg:w-3/12 hover:bg-customDarkGreen text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign In</Link>
-                        <Link to="/signup" className="inline-block inter mt-2 lg:mt-0 lg:ml-4 bg-customOrange w-8/12 lg:w-3/12 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign Up</Link>
-                    </div>
+                    <div className="lg:w-6/12 w-full">
+                        <p className="inter font-normal mb-4 max-w-prose px-8 text-2xl text-customDarkGreen text-center ">Welcome to</p>
+                        <h1 className="text-5xl text-customDarkGreen inter font-bold mb-4 lg:mb-8 text-center">gardennotes<b className="text-customOrange">.</b><b className="text-customMidGreen">me</b></h1>
+                        <p className="inter font-light max-w-prose px-8 text-lg text-black text-center ">
+                        Your all-in-one solution for plant lovers. Whether you're a seasoned gardener or just starting out, gardennotes.me helps you keep track of all your plants effortlessly.
+                        </p>
+                        <div className="flex flex-col w-full lg:justify-center items-center mt-6 lg:flex-row">
+                            <Link to="/signin" className="inline-block inter bg-customMidGreen w-8/12 lg:w-3/12 hover:bg-customDarkGreen text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign In</Link>
+                            <Link to="/signup" className="inline-block inter mt-2 lg:mt-0 lg:ml-4 bg-customOrange w-8/12 lg:w-3/12 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign Up</Link>
+                        </div>
                     </div>
                 </div>
             </section>
