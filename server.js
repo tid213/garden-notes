@@ -1,5 +1,5 @@
 const express = require('express');
-const expressStaticGzip = require("express-static-gzip");
+const compression = require('compression');
 const cors = require('cors');
 const dotenv = require("dotenv")
 const bodyParser = require("body-parser");
@@ -16,6 +16,7 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 const geocodeKey = process.env.REACT_APP_GEOCODE_KEY;
 const app = express();
 
+app.use(compression());
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 
@@ -160,7 +161,7 @@ app.get('/notebook/:id', async (req, res) => {
 
 if (process.env.NODE_ENV === 'production') {
   // Exprees will serve up production assets
-  app.use(expressStaticGzip('client/build'));
+  app.use(express.static('client/build'));
 
   // Express serve up index.html file if it doesn't recognize route
   const path = require('path');
