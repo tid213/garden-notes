@@ -72,10 +72,10 @@ function Home () {
                 </div>
             )}
             </header>
-            <section className=" min-h-screen flex flex-col mt-16">
-                <div className="lg:flex lg:items-center items-center">
+            <section className=" min-w-screen min-h-screen flex flex-col mt-16">
+                <div className="lg:flex lg:items-center items-center w-full h-screen">
                     <div className="lg:w-6/12 w-full">
-                        <img className="mb-4 lg:mt-4 lg:mb-0 lg:mr-8  max-w-sm mx-auto lg:max-w-lg" src={landingImage} alt="Two people gardening" />
+                        <img className="mb-4 lg:mb-0 lg:mr-8 max-w-sm mx-auto lg:max-w-lg lg:max-h-lg" src={landingImage} alt="Two people gardening" />
                     </div>
                     <div className="lg:w-6/12 w-full">
                         <p className="inter font-normal mb-4 max-w-prose px-8 text-2xl text-customDarkGreen text-center ">Welcome to</p>
