@@ -74,8 +74,12 @@ function Home () {
             </header>
             <section className=" min-w-screen min-h-screen flex flex-col mt-16">
                 <div className="lg:flex lg:items-center items-center w-full h-screen">
-                    <div className="lg:w-6/12 w-full">
-                        <img className="mb-4 lg:mb-0 lg:mr-8 max-w-sm mx-auto lg:max-w-lg lg:max-h-lg" src={landingImage} alt="Two people gardening" />
+                    <div className="lg:w-512 lg:h-512 w-full">
+                        <img 
+                        className="mb-4 lg:mb-4 lg:mr-8 max-w-sm mx-auto lg:max-w-lg lg:max-h-lg" 
+                        src={landingImage} alt="Two people gardening"
+                        height="512"
+                        width="512" />
                     </div>
                     <div className="lg:w-6/12 w-full">
                         <p className="inter font-normal mb-4 max-w-prose px-8 text-2xl text-customDarkGreen text-center ">Welcome to</p>
