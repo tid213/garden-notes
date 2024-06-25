@@ -81,10 +81,10 @@ function Home () {
                         height="512"
                         width="512" />
                     </div>
-                    <div className="lg:w-6/12 w-full">
+                    <div className="lg:w-6/12 w-screen">
                         <p className="inter font-normal mb-4 max-w-prose px-8 text-2xl text-customDarkGreen text-center ">Welcome to</p>
                         <h1 className="text-5xl text-customDarkGreen inter font-bold mb-4 lg:mb-8 text-center">gardennotes<b className="text-customOrange">.</b><b className="text-customMidGreen">me</b></h1>
-                        <p className="inter font-light max-w-prose px-8 text-lg text-black text-center ">
+                        <p className="inter font-light px-8 text-lg text-black text-center ">
                         Your all-in-one solution for plant lovers. Whether you're a seasoned gardener or just starting out, gardennotes.me helps you keep track of all your plants effortlessly.
                         </p>
                         <div className="flex flex-col w-full lg:justify-center items-center mt-6 lg:flex-row">
