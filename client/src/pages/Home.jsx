@@ -7,10 +7,26 @@ import imgIcon from '../images/img-icon.svg';
 import weatherIcon from '../images/weather-icon.svg';
 import wateringPlantImg from '../images/person-watering-plant.svg';
 
+const usePreloadImage = (imageUrl) => {
+    useEffect(() => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = imageUrl;
+      document.head.appendChild(link);
+  
+      return () => {
+        document.head.removeChild(link);
+      };
+    }, [imageUrl]);
+  };
+
 function Home () {
 
     const [isOpen, setIsOpen] = useState(false);
     const [isTransparent, setIsTransparent] = useState(true);
+
+    usePreloadImage(landingImage)
 
     useEffect(() => {
         const handleScroll = () => {
