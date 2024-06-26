@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import landingImage from '../images/landing-image.svg';
+import landingImageSmall from '../images/landing-image-small.png'
 import noteAndPencil from '../images/note-with-pencil.svg'
 import plantIcon from '../images/plant-black.svg';
 import imgIcon from '../images/img-icon.svg';
@@ -25,8 +26,22 @@ function Home () {
 
     const [isOpen, setIsOpen] = useState(false);
     const [isTransparent, setIsTransparent] = useState(true);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-    usePreloadImage(landingImage)
+    usePreloadImage(landingImage);
+    usePreloadImage(landingImageSmall);
+    
+    useEffect(() => {
+        const handleResize = () => {
+          setIsMobile(window.innerWidth < 768);
+        };
+    
+        window.addEventListener('resize', handleResize);
+    
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+      }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -90,12 +105,14 @@ function Home () {
             </header>
             <section className=" min-w-screen min-h-screen flex flex-col mt-16">
                 <div className="lg:flex lg:items-center items-center w-full h-screen">
-                    <div className="lg:w-512 lg:h-512 w-full">
-                        <img 
-                        className="mb-4 lg:mb-4 lg:mr-8 max-w-sm mx-auto lg:max-w-lg lg:max-h-lg" 
-                        src={landingImage} alt="Two people gardening"
-                        height="512"
-                        width="512" />
+                    <div className="w-full lg:w-[512px] lg:h-[512px]">
+                        <img
+                            className="mb-4 lg:mb-4 lg:mr-8 max-w-[384px] mx-auto lg:max-w-[512px] lg:max-h-[512px]"
+                            src={isMobile ? landingImageSmall : landingImage}
+                            alt="Two people gardening"
+                            height={isMobile ? 384 : 512}
+                            width={isMobile ? 384 : 512}
+                        />
                     </div>
                     <div className="lg:w-6/12 w-screen">
                         <p className="inter font-normal mb-4 max-w-prose px-8 text-2xl text-customDarkGreen text-center ">Welcome to</p>
