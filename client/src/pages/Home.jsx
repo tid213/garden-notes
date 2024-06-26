@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import landingImage from '../images/landing-image.svg';
-import landingImageSmall from '../images/landing-image-small.png'
+import landingImageSmall from '../images/landing-image-small.webp'
 import noteAndPencil from '../images/note-with-pencil.svg'
 import plantIcon from '../images/plant-black.svg';
 import imgIcon from '../images/img-icon.svg';
@@ -106,13 +106,15 @@ function Home () {
             <section className=" min-w-screen min-h-screen flex flex-col mt-16">
                 <div className="lg:flex lg:items-center items-center w-full h-screen">
                     <div className="w-full lg:w-[512px] lg:h-[512px]">
-                        <img
-                            className="mb-4 lg:mb-4 lg:mr-8 max-w-[384px] mx-auto lg:max-w-[512px] lg:max-h-[512px]"
-                            src={isMobile ? landingImageSmall : landingImage}
-                            alt="Two people gardening"
-                            height={isMobile ? 384 : 512}
-                            width={isMobile ? 384 : 512}
-                        />
+                    <img
+                        className="mb-4 lg:mb-4 lg:mr-8 max-w-[384px] mx-auto lg:max-w-[512px] lg:max-h-[512px] lazyload"
+                        src={isMobile ? landingImageSmall : landingImage}
+                        srcSet={`${landingImageSmall} 384w, ${landingImage} 512w`}
+                        sizes="(max-width: 767px) 384px, 512px"
+                        alt="Two people gardening"
+                        height={isMobile ? 384 : 512}
+                        width={isMobile ? 384 : 512}
+                    />
                     </div>
                     <div className="lg:w-6/12 w-screen">
                         <p className="inter font-normal mb-4 max-w-prose px-8 text-2xl text-customDarkGreen text-center ">Welcome to</p>
