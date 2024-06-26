@@ -159,6 +159,18 @@ app.get('/notebook/:id', async (req, res) => {
 
 });
 
+app.use((req, res, next) => {
+  const extension = path.extname(req.url);
+
+  if (extension.match(/\.(js|css|png|jpg|jpeg|gif|svg|webp)$/)) {
+    const oneYear = 31536000; // 1 year in seconds
+    res.setHeader('Cache-Control', `public, max-age=${oneYear}`);
+    res.setHeader('Expires', new Date(Date.now() + oneYear * 1000).toUTCString());
+  }
+
+  next();
+});
+
 if (process.env.NODE_ENV === 'production') {
   // Exprees will serve up production assets
   app.use(express.static('client/build'));
