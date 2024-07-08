@@ -66,7 +66,7 @@ function Home () {
     };
 
       return (
-        <main className="min-h-screen min-w-screen flex flex-col bg-customLightBrown">
+        <main className="min-h-screen min-w-screen flex flex-col bg-slate-50">
             <header className={`fixed top-0 w-full ${isTransparent ? 'bg-white' : 'bg-opacity-90 bg-white'}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
@@ -106,9 +106,9 @@ function Home () {
             </header>
             <section className=" min-w-screen min-h-screen flex flex-col mt-16">
                 <div className="lg:flex lg:items-center items-center w-full h-screen">
-                    <div className="w-full lg:w-[512px] lg:h-[512px]">
+                <div className="flex flex-col items-center w-full lg:w-[512px] lg:h-[512px] mx-auto">
                     <img
-                        className="mb-4 lg:mb-4 lg:mr-8 max-w-[384px] mx-auto lg:max-w-[512px] lg:max-h-[512px] lazyload"
+                        className="mb-4 max-w-[384px] lg:max-w-[512px] lg:max-h-[512px] lazyload"
                         src={isMobile ? landingImageSmall : landingImage}
                         srcSet={`${landingImageSmall} 384w, ${landingImage} 512w`}
                         sizes="(max-width: 767px) 384px, 512px"
@@ -116,18 +116,17 @@ function Home () {
                         height={isMobile ? 384 : 512}
                         width={isMobile ? 384 : 512}
                     />
+                </div>
+                <div className="w-full lg:w-6/12 mx-auto text-center">
+                    <p className="inter font-normal mb-4 max-w-prose px-8 text-2xl text-customDarkGreen">Welcome to</p>
+                    <h1 className="text-5xl text-customDarkGreen inter font-bold mb-4 lg:mb-8">gardennotes<b className="text-customOrange">.</b><b className="text-customMidGreen">me</b></h1>
+                    <p className="inter font-light px-8 text-lg text-black">Your all-in-one solution for plant lovers. Whether you're a seasoned gardener or just starting out, gardennotes.me helps you keep track of all your plants effortlessly.</p>
+                    <div className="flex flex-col w-full lg:justify-center items-center mt-6 lg:flex-row">
+                        <Link to="/signin" className="inline-block inter bg-customMidGreen w-8/12 lg:w-3/12 hover:bg-customDarkGreen text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign In</Link>
+                        <Link to="/signup" className="inline-block inter mt-2 lg:mt-0 lg:ml-4 bg-customOrange w-8/12 lg:w-3/12 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign Up</Link>
                     </div>
-                    <div className="lg:w-6/12 w-screen">
-                        <p className="inter font-normal mb-4 max-w-prose px-8 text-2xl text-customDarkGreen text-center ">Welcome to</p>
-                        <h1 className="text-5xl text-customDarkGreen inter font-bold mb-4 lg:mb-8 text-center">gardennotes<b className="text-customOrange">.</b><b className="text-customMidGreen">me</b></h1>
-                        <p className="inter font-light px-8 text-lg text-black text-center ">
-                        Your all-in-one solution for plant lovers. Whether you're a seasoned gardener or just starting out, gardennotes.me helps you keep track of all your plants effortlessly.
-                        </p>
-                        <div className="flex flex-col w-full lg:justify-center items-center mt-6 lg:flex-row">
-                            <Link to="/signin" className="inline-block inter bg-customMidGreen w-8/12 lg:w-3/12 hover:bg-customDarkGreen text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign In</Link>
-                            <Link to="/signup" className="inline-block inter mt-2 lg:mt-0 lg:ml-4 bg-customOrange w-8/12 lg:w-3/12 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign Up</Link>
-                        </div>
-                    </div>
+                </div>
+
                 </div>
             </section>
             <section className="container mx-auto py-8 ">
