@@ -40,7 +40,7 @@ const SignUpForm = () => {
 
   return (
     <div className=" inter max-w-sm mx-auto p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-3xl font-semibold mb-4 text-customMidGreen">sign up<b className='text-customOrange'>.</b></h2>
+      <h2 className="text-3xl font-semibold mb-4 text-customMidGreen">Sign up<b className='text-customOrange'>.</b></h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-gray-700">Email:</label>

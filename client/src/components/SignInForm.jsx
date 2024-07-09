@@ -40,7 +40,7 @@ const SignInForm = () => {
 
   return (
     <div className="max-w-sm mx-auto inter p-6 bg-white rounded-lg shadow-md">
-  <h2 className="text-3xl text-customMidGreen font-semibold mb-4">sign in<b className='text-customOrange'>.</b></h2>
+  <h2 className="text-3xl text-customMidGreen font-semibold mb-4">Sign in<b className='text-customOrange'>.</b></h2>
   <form onSubmit={handleSignIn}>
     <div className="mb-4">
       <label className="block text-gray-700">Email:</label>

@@ -305,13 +305,13 @@ function Dashboard ({session}) {
 
     if(fullyRegistered===false){
         return(
-            <div className="min-h-screen flex flex-col justify-center items-center bg-customLightBrown">
+            <div className="min-h-screen flex flex-col justify-center items-center bg-slate-50">
                 {regCheck ? (<img src={loadingImg} className="w-16 h-16" alt="loading dots bouncing"></img>):(<AccountForm session={session}/>)}
             </div>
         )
     } else{
         return(
-            <div className="min-h-screen flex flex-col items-center bg-customLightBrown">
+            <div className="min-h-screen flex flex-col items-center bg-slate-50">
                 <header className={`fixed top-0 w-full ${isTransparent ? 'bg-white' : 'bg-opacity-90 bg-white'}`}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
