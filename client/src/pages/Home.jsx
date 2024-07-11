@@ -105,7 +105,16 @@ function Home () {
             )}
             </header>
             <section className=" min-w-screen  flex flex-col mt-16">
-                <div className="lg:flex lg:items-center flex items-center w-full h-screen">
+                <div className="lg:flex lg:items-center flex flex-col items-center w-full min-h-screen">
+                <img
+                    className="mb-4 max-w-[384px]  lazyload"
+                    src={isMobile ? landingImageSmall : landingImage}
+                    srcSet={`${landingImageSmall} 384w, ${landingImage} 512w`}
+                    sizes="(max-width: 767px) 384px, 512px"
+                    alt="Two people gardening"
+                    height={isMobile ? 384 : 512}
+                    width={isMobile ? 384 : 512}
+                />
                 <div className="w-full lg:w-6/12 mx-auto text-center">
                     <p className="font-normal mb-4 px-8 text-2xl text-customDarkGreen">Welcome to</p>
                     <h1 className="text-5xl text-customDarkGreen font-bold mb-4 lg:mb-8">gardennotes<b className="text-customOrange">.</b><b className="text-customMidGreen">me</b></h1>
