@@ -10,6 +10,7 @@ import partlyCloudyDay from '../images/partly-cloudy-day.svg'
 function Weather({session, zipCode, closeButton}){
 
     const [weatherForecast, setWeatherForecast] = useState();
+    const [loadingWeather, setLoadingWeather] = useState(true);
 
     useEffect(() => {
       const fetchData = async () => {
@@ -27,6 +28,7 @@ function Weather({session, zipCode, closeButton}){
           if (response.ok) {
             const data = await response.json();
             setWeatherForecast(data.weather)
+            setLoadingWeather(false)
           } else {
             console.error('Request failed:', response.statusText);
           }
@@ -54,7 +56,15 @@ function Weather({session, zipCode, closeButton}){
        else{
           return clearDay
       }
-  }      
+  }    
+  if (loadingWeather === true){
+    return(
+      <div className="bg-white mt-8 relative rounded-lg shadow-md border border-gray-200 inter">
+          <div onClick={()=> closeButton(true)} className='absolute text-xl font-bold right-2 top-2 cursor-pointer'><img src={closeImage} className='h-4 w-4 ' alt="close button"></img></div>
+            <p>Loading local weather...</p>
+        </div>
+    )
+  } else {
     return(
         <div className="bg-white mt-8 relative rounded-lg shadow-md border border-gray-200 inter">
           <div onClick={()=> closeButton(true)} className='absolute text-xl font-bold right-2 top-2 cursor-pointer'><img src={closeImage} className='h-4 w-4 ' alt="close button"></img></div>
@@ -72,6 +82,7 @@ function Weather({session, zipCode, closeButton}){
             </div>
         </div>
     )
+  }
 }
 
 export default Weather;
