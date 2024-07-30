@@ -226,7 +226,7 @@ function Dashboard ({session}) {
                             return(
                                 <div key={data.id} 
                                 onClick={()=>{setPlantID(data.id)}}
-                                className={`p-4 rounded-sm shadow-md cursor-pointer ${colors[colorIndices[index]]}`}>
+                                className={`p-4 rounded-sm shadow-md cursor-pointer bg-white`}>
                                     <div className='lg:h-52 lg:w-52 h-40 w-38 bg-cover bg-center overflow-hidden flex items-center'>
                                     {data.plant_image ? 
                                     <img className="w-full h-full object-cover overflow-hidden" src={data.plant_image} alt="User's plant" /> : 
@@ -245,7 +245,7 @@ function Dashboard ({session}) {
                             return(
                                 <div key={data.id} 
                                 onClick={()=>{setPlotID(data.id);}}
-                                className={`p-4 rounded-sm shadow-md cursor-pointer ${colors[colorIndices[index]]}`}>
+                                className={`p-4 rounded-sm shadow-md cursor-pointer bg-white`}>
                                     <div className='lg:h-52 lg:w-52 h-40 w-38 bg-cover bg-center overflow-hidden flex items-center'>
                                     {data.plot_image ? 
                                     <img className="w-full h-full object-cover overflow-hidden" src={data.plot_image} alt="User's plot" /> : 

@@ -60,7 +60,6 @@ function Weather({session, zipCode, closeButton}){
   if (loadingWeather === true){
     return(
       <div className="bg-white mt-8 relative rounded-lg shadow-md border border-gray-200 inter">
-          <div onClick={()=> closeButton(true)} className='absolute text-xl font-bold right-2 top-2 cursor-pointer'><img src={closeImage} className='h-4 w-4 ' alt="close button"></img></div>
             <p>Loading local weather...</p>
         </div>
     )
