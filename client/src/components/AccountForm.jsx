@@ -79,7 +79,7 @@ const AccountForm = ({session, closeButton}) => {
           <label className='block text-gray-700'>Username:</label>
           <input
             type="text"
-            className="w-full px-4 py-2 border rounded-md bg-lime-100 focus:outline-none focus:border-lime-500"
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-lime-500"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
@@ -89,7 +89,7 @@ const AccountForm = ({session, closeButton}) => {
           <label className='block text-gray-700'>Grow Zone:</label>
           <input
             type="text"
-            className="w-full px-4 py-2 border rounded-md bg-lime-100 focus:outline-none focus:border-lime-500"
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-lime-500"
             value={zone}
             onChange={(e) => setZone(e.target.value)}
           />
@@ -98,12 +98,12 @@ const AccountForm = ({session, closeButton}) => {
           <label className='block text-gray-700'>Zip Code:</label>
           <input
             type="text"
-            className="w-full px-4 py-2 border rounded-md bg-lime-100 focus:outline-none focus:border-lime-500"
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-lime-500"
             value={zipCode}
             onChange={(e) => setZipCode(e.target.value)}
           />
         </div>
-        <button className="mt-4 w-full bg-customOrange hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
+        <button className="mt-4 w-full bg-lime-500 hover:bg-lime-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
         type="submit" disabled={loading}>Save</button>
         <button className="mt-4 w-full bg-customDarkGreen hover:bg-black text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">
             Change Password

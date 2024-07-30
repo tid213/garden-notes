@@ -91,7 +91,7 @@ const NoteForm = ({session, closeButton}) => {
       <div className='mb-4'>
         <label className='block text-gray-700'>Note Type:</label>
         <select value={noteType} 
-        className="w-full px-4 py-2 border rounded-md bg-lime-100 focus:outline-none focus:border-lime-500"
+        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-lime-500"
         onChange={(e) => handleNoteTypeChange(e.target.value)} required>
           <option value="Garden">Garden</option>
           <option value="Plant">Plant Note</option>
@@ -102,7 +102,7 @@ const NoteForm = ({session, closeButton}) => {
         <div className='mb-4'>
           <label className='block text-gray-700'>Note For:</label>
           <select value={noteFor} 
-          className="w-full px-4 py-2 border rounded-md bg-lime-100 focus:outline-none focus:border-lime-500"
+          className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-lime-500"
           onChange={(e) => handleNoteForChange(e.target.value)} required>
             <option value="">Select Plant</option>
             {userPlants.map((plant, index) => (
@@ -115,7 +115,7 @@ const NoteForm = ({session, closeButton}) => {
         <div className='mb-4'>
           <label className='block text-gray-700'>Note For:</label>
           <select value={noteFor} 
-          className="w-full px-4 py-2 border rounded-md bg-lime-100 focus:outline-none focus:border-lime-500"
+          className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-lime-500"
           onChange={(e) => handleNoteForChange(e.target.value)} required>
             <option value="">Select Plot</option>
             {userPlots.map((plot, index) => (
@@ -127,10 +127,10 @@ const NoteForm = ({session, closeButton}) => {
       <div>
         <label className='block text-gray-700'>Note:</label>
         <textarea value={note} 
-        className="w-full px-4 py-2 border rounded-md bg-lime-100 focus:outline-none focus:border-lime-500"
+        className="w-full px-4 py-2 border rounded-md  focus:outline-none focus:border-lime-500"
         onChange={(e) => setNote(e.target.value)} required />
       </div>
-      <button className="mt-4 w-full bg-customOrange hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
+      <button className="mt-4 w-full bg-lime-500 hover:bg-lime-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
       type="submit">Save Note</button>
     </form>
     </div>

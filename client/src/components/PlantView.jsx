@@ -95,9 +95,6 @@ function PlantView({session, plantID, closeButton, editButton, bgColor}){
                         <div className='lg:col-span-7'>
                             <h1 className="text-2xl font-bold inter text-customBrown">
                                 {plantData[0].plant_name}<b className="text-customOrange">.</b>
-                                <b className="text-customMidGreen text-xl font-normal">
-                                    plot/{plantData[0].plant_plot}
-                                </b>
                             </h1>
                         </div>
                         <div className='lg:col-span-4 lg:w-96 lg:h-96 bg-transparent lg:flex bg-cover bg-center overflow-hidden flex justify-center items-center'>

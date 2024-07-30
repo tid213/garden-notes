@@ -89,13 +89,13 @@ const PlantForm = ({ plantId, session, closeButton, editButton }) => {
       <div className='mt-4 lg:mt-0 lg:col-span-2'>
         <label className="block text-gray-700">Plant Name:</label>
         <input type="text" value={plantName} 
-        className="w-full px-4 py-2 border rounded-md bg-lime-100 focus:outline-none focus:border-lime-500"
+        className="w-full px-4 py-2 border rounded-md  focus:outline-none focus:border-lime-500"
         onChange={(e) => setPlantName(e.target.value)} required />
       </div>
       <div className='mt-4 lg:mt-0 lg:col-span-2'>
         <label className="block text-gray-700">Sun Type:</label>
         <select value={sunType} 
-        className='w-full px-4 py-2 border rounded-md bg-lime-100 focus:outline-none focus:border-lime-500'
+        className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-lime-500'
         onChange={(e) => setSunType(e.target.value)}>
           <option value="Full Sun">Full Sun</option>
           <option value="Part Sun">Part Sun</option>
@@ -108,10 +108,10 @@ const PlantForm = ({ plantId, session, closeButton, editButton }) => {
         <select
             value={waterFreq}
             onChange={(e) => setWaterFreq(e.target.value)}
-            className="w-full px-4 py-2 border rounded-md bg-lime-100 focus:outline-none focus:border-lime-500"
+            className="w-full px-4 py-2 border rounded-md  focus:outline-none focus:border-lime-500"
             required
         >
-            {waterFreq ? <option value={waterFreq}>{waterFreq}</option> : ""}
+            {waterFreq ? <option value={waterFreq}>{waterFreq}</option> : <option>Select</option>}
             <option value="Daily">Daily</option>
             <option value="Every other day">Every Two Days</option>
             <option value="Twice Weekly">Twice Weekly</option>
@@ -122,7 +122,7 @@ const PlantForm = ({ plantId, session, closeButton, editButton }) => {
       <div className='mt-4 lg:mt-0'>
         <label className='block text-gray-700'>Plant Plot:</label>
         <select value={plantPlot} 
-        className='w-full px-4 py-2 border rounded-md bg-lime-100 focus:outline-none focus:border-lime-500'
+        className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-lime-500'
         onChange={(e) => setPlantPlot(e.target.value)} required>
           <option value="">Select Plot</option>
           {plots.map((plot) => (
@@ -133,8 +133,9 @@ const PlantForm = ({ plantId, session, closeButton, editButton }) => {
       <div className='mt-4 lg:mt-0'>
         <label className='block text-gray-700'>Fertilizing Frequency:</label>
         <select value={fertFreq} 
-        className='w-full px-4 py-2 border rounded-md bg-lime-100 focus:outline-none focus:border-lime-500'
+        className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-lime-500'
         onChange={(e) => setFertFreq(e.target.value)}>
+          {fertFreq ? <option value={fertFreq}>{fertFreq}</option> : <option>Select</option>}
           <option value="Two weeks">Two weeks</option>
           <option value="One Month">One Month</option>
           <option value="Two Months">Two Months</option>
@@ -146,8 +147,9 @@ const PlantForm = ({ plantId, session, closeButton, editButton }) => {
       <div className='mt-4 lg:mt-0'>
         <label className='block text-gray-700'>Pruning Frequency:</label>
         <select value={pruneFreq} 
-        className='w-full px-4 py-2 border rounded-md bg-lime-100 focus:outline-none focus:border-lime-500'
+        className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-lime-500'
         onChange={(e) => setPruneFreq(e.target.value)}>
+          {pruneFreq ? <option value={pruneFreq}>{pruneFreq}</option> : <option>Select</option>}
           <option value="Monthly">Monthly</option>
           <option value="Two Months">Two Months</option>
           <option value="Three Months">Three Months</option>
@@ -156,7 +158,7 @@ const PlantForm = ({ plantId, session, closeButton, editButton }) => {
         </select>
       </div>
       <button  
-      className="mt-4 lg:mt-0 w-full lg:col-span-2 bg-customOrange hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
+      className="mt-4 lg:mt-0 w-full lg:col-span-2 bg-lime-500 hover:bg-lime-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
       type="submit">Save Plant
       </button>
     </form>
