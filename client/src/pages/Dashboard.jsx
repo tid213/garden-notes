@@ -13,6 +13,7 @@ import ViewToggle from "../components/ViewToggle";
 import PlotView from "../components/PlotView";
 import NoteView from "../components/NoteView";
 import Weather from '../components/Weather';
+import NavBar from '../components/NavBar';
 
 function Dashboard ({session}) {
 
@@ -145,6 +146,9 @@ function Dashboard ({session}) {
           };
     }, [session.user.id])
 
+
+    // Generate colors for note divs
+    
     useEffect(() => {
         const generateRandomColorIndices = () => {
             if(toggle === "notes"){
@@ -324,50 +328,9 @@ function Dashboard ({session}) {
             </div>
         )
     } else{
-        return(
+        return( 
             <div className="min-h-screen flex flex-col items-center bg-slate-50">
-                <header className={`fixed top-0 w-full ${isTransparent ? 'bg-white' : 'bg-opacity-90 bg-white'}`}>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between h-16">
-                    <div className="flex-shrink-0 flex items-center">
-                        {/* Logo */}
-                        <h1 className="text-base font-normal inter text-customBrown">gardennotes<b className="text-customOrange">.</b><b className="text-customMidGreen">{!loadingUserInfo ? userInfo[0].username : " "}</b></h1>
-                    </div>
-                    <div className="hidden lg:flex lg:items-center lg:justify-end lg:flex-1">
-                        {/* Navigation Links */}
-                        <nav className="flex space-x-4">
-                        <span onClick={()=> setFormView("show weather")} className="text-gray-900 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium">Weather</span>
-                        <span onClick={()=> setFormView("add note")} className="text-gray-900 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium">Write Note</span>
-                        <span onClick={()=> setFormView("add plant")} className="text-gray-900 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium">Add Plant</span>
-                        <span onClick={()=> setFormView("add plot")} className="text-gray-900 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium">Add Plot</span>
-                        <span onClick={()=> setFormView("edit account")} className="text-gray-900 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium">Account</span>
-                        <span onClick={() => handleSignOut()} className="text-gray-900 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium">Sign Out</span>                        
-                        </nav>
-                    </div>
-                    {/* Hamburger Menu for Mobile */}
-                    <div className="flex lg:hidden">
-                        <button onClick={toggleMenu} className="bg-white p-2 rounded-md inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500">
-                        <span className="sr-only">Open main menu</span>
-                        <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                        </button>
-                    </div>
-                    </div>
-                </div>
-                {isOpen && (
-                    <div className="lg:hidden">
-                    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-md">
-                        <span onClick={()=> {setFormView("show weather"); setIsOpen(false);}} className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">Weather</span>
-                        <span onClick={()=> {setFormView("add plant"); setIsOpen(false);}} className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">Add Plant</span>
-                        <span onClick={()=> {setFormView("add plot");setIsOpen(false);}} className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">Add Plot</span>
-                        <span onClick={()=> {setFormView("add note");setIsOpen(false);}} className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">Write Note</span>
-                        <span onClick={()=> {setFormView("edit account");setIsOpen(false);}} className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">Account</span>
-                        <span onClick={() => handleSignOut()} className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">Sign Out</span>
-                    </div>
-                    </div>
-                )}
-                </header>
+                <NavBar navbarFormToggle={navbarFormToggle} userSignedIn={true} />
                 <div className="absolute top-12">{viewContainer()} </div>
                 <div className="">{<ViewToggle togglePPN={togglePPN} />}</div>
                 <div className="mt-4">

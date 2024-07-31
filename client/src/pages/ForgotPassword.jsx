@@ -11,7 +11,7 @@ const ForgotPassword = () => {
     setLoading(true);
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: 'http://localhost:3000/changepassword',
+        redirectTo: 'http://localhost:3000/changepassword',//Will need to change this once in production
       });
       if (error) {
         throw error;
