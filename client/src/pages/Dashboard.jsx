@@ -162,6 +162,14 @@ function Dashboard ({session}) {
         generateRandomColorIndices();
     }, [noteData, plantData, plotData, toggle, colors.length]);
 
+    const formatDate = (dateString) => {
+        const options = { month: 'long', day: 'numeric', year: 'numeric' };
+        const formattedDate = new Date(dateString).toLocaleDateString('en-US', options);
+        return formattedDate;
+    };
+
+    // Nav bar functions 
+
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
@@ -170,6 +178,12 @@ function Dashboard ({session}) {
         await supabase.auth.signOut();
         navigate('/');
       };
+
+    const navbarFormToggle = (data) => {
+        setFormView(data);
+    }
+
+    //Form buttons
 
     const closeButton = (data) => {
         if(data === true){
@@ -186,6 +200,8 @@ function Dashboard ({session}) {
             setFormView("view plot")
         }
     };
+
+    // Set Plant, Plot and Note data and views
 
     const setPlantID = (data) => {
         if(data){
@@ -212,11 +228,7 @@ function Dashboard ({session}) {
         setToggle(data);
     };
 
-    const formatDate = (dateString) => {
-        const options = { month: 'long', day: 'numeric', year: 'numeric' };
-        const formattedDate = new Date(dateString).toLocaleDateString('en-US', options);
-        return formattedDate;
-    };
+    //Plants, Plots and Notes displays
 
     const showPPN = () => {
         if(toggle === "plants" && !loadingPlantData){
@@ -278,6 +290,8 @@ function Dashboard ({session}) {
             )
         }
     };
+
+    //Shows Plant, Plot and Note components
 
     const viewContainer = () => {
         if(formView === "add plant"){
