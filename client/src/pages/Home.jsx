@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
-import landingImage from '../images/landing-image.svg';
 import landingImageSmall from '../images/landing-image-small.webp'
 import noteAndPencil from '../images/note-with-pencil.svg'
 import plantIcon from '../images/plant-black.svg';
@@ -9,62 +8,8 @@ import weatherIcon from '../images/weather-icon.svg';
 import wateringPlantImg from '../images/person-watering-plant.svg';
 import NavBar from "../components/NavBar";
 
-const usePreloadImage = (imageUrl) => {
-    useEffect(() => {
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.fetchPriority = "high";
-      link.as = 'image';
-      link.href = imageUrl;
-      document.head.appendChild(link);
-  
-      return () => {
-        document.head.removeChild(link);
-      };
-    }, [imageUrl]);
-  };
 
 function Home () {
-
-    const [isOpen, setIsOpen] = useState(false);
-    const [isTransparent, setIsTransparent] = useState(true);
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-
-    usePreloadImage(landingImage);
-    usePreloadImage(landingImageSmall);
-    
-    useEffect(() => {
-        const handleResize = () => {
-          setIsMobile(window.innerWidth < 768);
-        };
-    
-        window.addEventListener('resize', handleResize);
-    
-        return () => {
-          window.removeEventListener('resize', handleResize);
-        };
-      }, []);
-
-    useEffect(() => {
-        const handleScroll = () => {
-          const scrollPosition = window.scrollY;
-          if (scrollPosition > 0) {
-            setIsTransparent(false);
-          } else {
-            setIsTransparent(true);
-          }
-        };
-    
-        window.addEventListener('scroll', handleScroll);
-    
-        return () => {
-          window.removeEventListener('scroll', handleScroll);
-        };
-      }, []);
-
-    const toggleMenu = () => {
-        setIsOpen(!isOpen);
-    };
 
       return (
         <main className="min-h-screen min-w-screen flex flex-col bg-slate-50">
@@ -72,7 +17,7 @@ function Home () {
             <section className=" min-w-screen  flex flex-col lg:mt-4">
                 <div className="lg:flex lg:items-center flex flex-col justify-center items-center w-full min-h-screen">
                 <img
-                    className="mb-4 max-w-[384px]  lazyload"
+                    className="mb-4 max-w-[384px]"
                     src={landingImageSmall}
                     alt="Two people gardening"
                     height={264}

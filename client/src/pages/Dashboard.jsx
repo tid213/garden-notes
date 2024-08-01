@@ -5,7 +5,6 @@ import PlantForm from "../components/PlantForm";
 import PlotForm from "../components/PlotForm";
 import NoteForm from "../components/NoteForm";
 import loadingImg from '../images/bouncing-circles.svg';
-import { useNavigate } from "react-router-dom";
 import tempImage from '../images/temp-image.png';
 import tempPlotImage from '../images/garden-plot.png';
 import PlantView from "../components/PlantView";
@@ -17,11 +16,9 @@ import NavBar from '../components/NavBar';
 
 function Dashboard ({session}) {
 
-    const navigate = useNavigate();
     const [fullyRegistered, setFullyRegistered] = useState(false);
     const [regCheck, setRegCheck] = useState(true);
     const [userInfo, setUserInfo] = useState();
-    const [loadingUserInfo, setLoadingUserInfo] = useState(true);
     const [plantData, setPlantData] = useState();
     const [loadingPlantData, setLoadingPlantData] = useState(true);
     const [plotData, setPlotData] = useState();
@@ -29,19 +26,17 @@ function Dashboard ({session}) {
     const [noteData, setNoteData] = useState();
     const [loadingNoteData, setLoadingNoteData] = useState(true);
     const [formView, setFormView] = useState("");
-    const [isOpen, setIsOpen] = useState(false);
-    const [isTransparent, setIsTransparent] = useState(true);
     const [toggle, setToggle] = useState("plants")
     const [viewPlantID, setViewPlantID] = useState("");
     const [viewPlotID, setViewPlotID] = useState("");
     const [viewNoteID, setViewNoteID] = useState("");
     const colors = ["bg-lime-200","bg-lime-200", "bg-amber-200", "bg-orange-200"];
     const [colorIndices, setColorIndices] = useState([]);
+    
 
     useEffect(()=>{
         const fetchUserInfo = async () => {
             try {
-                setLoadingUserInfo(true);
                 const { data, error } = await supabase
                   .from('profiles')
                   .select('*')
@@ -59,10 +54,8 @@ function Dashboard ({session}) {
                 }
     
                 setUserInfo(data || []);
-                setLoadingUserInfo(false);
               } catch (error) {
                 console.error('Error fetching plants:', error.message);
-                setLoadingUserInfo(false);
               }
         };
     
@@ -130,25 +123,11 @@ function Dashboard ({session}) {
         fetchPlantData();
         fetchPlotData();
         fetchNoteData();
-        const handleScroll = () => {
-            const scrollPosition = window.scrollY;
-            if (scrollPosition > 0) {
-              setIsTransparent(false);
-            } else {
-              setIsTransparent(true);
-            }
-          };
-      
-          window.addEventListener('scroll', handleScroll);
-      
-          return () => {
-            window.removeEventListener('scroll', handleScroll);
-          };
     }, [session.user.id])
 
 
     // Generate colors for note divs
-    
+
     useEffect(() => {
         const generateRandomColorIndices = () => {
             if(toggle === "notes"){
@@ -173,15 +152,6 @@ function Dashboard ({session}) {
     };
 
     // Nav bar functions 
-
-    const toggleMenu = () => {
-        setIsOpen(!isOpen);
-    };
-
-    const handleSignOut = async () => {
-        await supabase.auth.signOut();
-        navigate('/');
-      };
 
     const navbarFormToggle = (data) => {
         setFormView(data);
@@ -209,22 +179,25 @@ function Dashboard ({session}) {
 
     const setPlantID = (data) => {
         if(data){
-            setViewPlantID(data)
-            setFormView("view plant")
+            setViewPlantID(data);
+            setFormView("view plant");
+            window.scrollTo(0, 0);
         }
     };
 
     const setPlotID = (data) => {
         if(data){
-            setViewPlotID(data)
-            setFormView("view plot")
+            setViewPlotID(data);
+            setFormView("view plot");
+            window.scrollTo(0, 0);
         }
     };
 
     const setNoteID = (data) => {
         if(data){
-            setViewNoteID(data)
-            setFormView("view note")
+            setViewNoteID(data);
+            setFormView("view note");
+            window.scrollTo(0, 0);
         }
     };
 
