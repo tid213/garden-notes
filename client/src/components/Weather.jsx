@@ -59,7 +59,7 @@ function Weather({session, zipCode, closeButton}){
   }    
   if (loadingWeather === true){
     return(
-      <div className="bg-white mt-8 relative rounded-lg shadow-md border border-gray-200 inter">
+      <div className="bg-white mt-8 relative rounded-lg shadow-md border border-gray-200 inter p-4">
             <p>Loading local weather...</p>
         </div>
     )
