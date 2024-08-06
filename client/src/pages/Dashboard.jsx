@@ -125,7 +125,6 @@ function Dashboard ({session}) {
         fetchNoteData();
     }, [session.user.id])
 
-
     // Generate colors for note divs
 
     useEffect(() => {
