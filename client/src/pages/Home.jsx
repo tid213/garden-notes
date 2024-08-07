@@ -8,7 +8,6 @@ import weatherIcon from '../images/weather-icon.svg';
 import wateringPlantImg from '../images/person-watering-plant.svg';
 import NavBar from "../components/NavBar";
 
-
 function Home () {
       return (
         <main className="min-h-screen min-w-screen flex flex-col bg-slate-50">
