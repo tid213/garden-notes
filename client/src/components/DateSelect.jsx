@@ -42,8 +42,8 @@ function DateSelect({plantId, pruneOrFert, close}){
                 <form onSubmit={submitPruneDate} className="mt-4">
                     <label htmlFor="prune_date" className="block">Date:</label>
                     <input type="date" id="prune_date" name="prune_date" onChange={(e) => setDate(e.target.value)} className="block w-full border border-gray-300 rounded-md p-2 mt-1"/>
-                    <button type="submit" className="mt-4 w-full bg-customOrange hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">Set Date</button>
-                    <div className="close-button cursor-pointer mt-4 w-full bg-customOrange hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline" onClick={() => close('close')}>Close</div>
+                    <button type="submit" className="mt-4 w-full bg-lime-500 hover:bg-lime-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">Set Date</button>
+                    <div className="close-button cursor-pointer mt-4 w-full bg-lime-500 hover:bg-lime-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline" onClick={() => close('close')}>Close</div>
                 </form>
             </div>
         );
@@ -56,8 +56,8 @@ function DateSelect({plantId, pruneOrFert, close}){
                 <form onSubmit={submitFertilizeDate} className="mt-4">
                     <label htmlFor="fertilize_date" className="block">Date:</label>
                     <input type="date" id="fertilize_date" name="fertilize_date" onChange={(e) => setDate(e.target.value)} className="block w-full border border-gray-300 rounded-md p-2 mt-1"/>
-                    <button type="submit" className="mt-4 w-full bg-customOrange hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">Set Date</button>
-                    <div className="close-button cursor-pointer mt-4 w-full bg-customOrange hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline" onClick={() => close('close')}>Close</div>
+                    <button type="submit" className="mt-4 w-full bg-lime-500 hover:bg-lime-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">Set Date</button>
+                    <div className="close-button cursor-pointer mt-4 w-full bg-lime-500 hover:bg-lime-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline" onClick={() => close('close')}>Close</div>
                 </form>
             </div>
         );

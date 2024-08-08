@@ -155,16 +155,16 @@ function ImageForm({imageFor, imageForId, close, session}){
   
   return (
     <div className="upload inter ml-4 mr-4 p-8 bg-white border border-customMidGreen rounded-lg shadow-md">
-        <p className="mt-2 mb-2 font-semibold text-customMidGreen text-2xl">Upload image</p>
+        <p className="mt-2 mb-2 font-semibold text-customMidGreen text-2xl">Add or change image</p>
         <div className="upload-image mt-4">
             <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" id="fileInput" />
-            <label htmlFor="fileInput" className=" w-full bg-customLightGreen hover:bg-customMidGreen text-white font-bold py-2 px-4 rounded inline-block cursor-pointer">
+            <label htmlFor="fileInput" className=" w-full bg-whit border-black border-2 text-black py-2 px-4 rounded inline-block cursor-pointer">
                 {chooseImage}
             </label>
-            <button onClick={uploadFile} className="w-full mt-2 bg-customMidGreen hover:bg-customDarkGreen text-white font-bold py-2 px-4 rounded inline-block cursor-pointer">
+            <button onClick={uploadFile} className="w-full mt-2 bg-lime-500 hover:bg-lime-600 text-white font-bold py-2 px-4 rounded inline-block cursor-pointer">
                 Upload
             </button>
-            <div className="close-button cursor-pointer mt-8 w-full bg-customOrange hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline" onClick={() => close('close')}>Close</div>
+            <div className="close-button cursor-pointer mt-2 w-full bg-lime-500 hover:bg-lime-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline" onClick={() => close('close')}>Close</div>
         </div>
     </div>
 
