@@ -16,7 +16,7 @@ function PlotView({plotID, session, closeButton, editButton}){
 
     const refreshPage = ()=>{
         window.location.reload();
-       }
+    };
 
     useEffect(()=>{
         const fetchPlotData = async () =>{
@@ -69,7 +69,6 @@ function PlotView({plotID, session, closeButton, editButton}){
 
     const handleDelete = async (e) => {
         e.preventDefault();
-
         try {
             const { error } = await supabase
             .from('plots')
@@ -82,14 +81,13 @@ function PlotView({plotID, session, closeButton, editButton}){
         } catch (error){
             console.error('Error saving note data:', error.message);
         } refreshPage();
-
-    }
+    };
 
     const close = (data) => {
         if(data === 'close'){
             setImageView("image")
         }
-    }
+    };
 
     return(
         <div>

@@ -24,7 +24,7 @@ const NavBar = ({navbarFormToggle, userSignedIn}) => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  })
+  });
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);

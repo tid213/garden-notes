@@ -14,7 +14,7 @@ const PlantForm = ({ plantId, session, closeButton, editButton }) => {
 
   const refreshPage = ()=>{
     window.location.reload();
-   }
+  };
 
   useEffect(() => {
     const fetchPlantData = async () => {

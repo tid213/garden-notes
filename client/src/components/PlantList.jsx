@@ -11,7 +11,7 @@ function PlantList({session, plantData}){
         if(data===true){
             setViewPlant(false)
         }
-    }
+    };
 
     const plantViewClick = () => {
         if (viewPlant === true){
@@ -19,13 +19,13 @@ function PlantList({session, plantData}){
         } else{
             setPlantID(true)
         }
-    }
+    };
 
     const plantViewer = () => {
         if(viewPlant === true){
             return(<PlantView session={session} plantID={plantID} closeButton={closeButton} />)
         }
-    }
+    };
 
     return(
     <div>

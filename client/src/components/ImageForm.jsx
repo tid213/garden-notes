@@ -10,7 +10,7 @@ function ImageForm({imageFor, imageForId, close, session}){
 
     const refreshPage = ()=>{
       window.location.reload();
-   }
+    };
 
     const setNoteImage = async (link) => {
       console.log(link)
@@ -23,7 +23,7 @@ function ImageForm({imageFor, imageForId, close, session}){
         } else{
           console.log("link added")
         }
-    }
+    };
 
     const setPlantImage = async (link) => {
         console.log(link)
@@ -36,7 +36,7 @@ function ImageForm({imageFor, imageForId, close, session}){
           } else{
             console.log("link added")
           }
-      }
+      };
 
       const setPlotImage = async (link) => {
         console.log(link)
@@ -49,7 +49,7 @@ function ImageForm({imageFor, imageForId, close, session}){
           } else{
             console.log("link added")
           }
-      }
+      };
 
     const createFileName = () => {
         const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -58,7 +58,7 @@ function ImageForm({imageFor, imageForId, close, session}){
         result += characters.charAt(Math.floor(Math.random() * characters.length));
         }
         return result;
-    }
+    };
 
   // Function to upload file to s3
   const uploadFile = async () => {

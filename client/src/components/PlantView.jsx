@@ -34,7 +34,7 @@ function PlantView({session, plantID, closeButton, editButton, bgColor}){
               }
         }
         fetchPlantData();
-    }, [plantID])
+    }, [plantID]);
 
     const dateAndImage = (data) => {
         if(data === "fertilize"){
@@ -46,7 +46,7 @@ function PlantView({session, plantID, closeButton, editButton, bgColor}){
         } else if(data === "upload"){
             setDateAndImageView("upload")
         }
-    }
+    };
 
     const imageDisplay = () => {
         if(plantData[0].plant_image){
@@ -54,7 +54,7 @@ function PlantView({session, plantID, closeButton, editButton, bgColor}){
         } else{
             return(<img src={tempImage} alt="holder for user's plant"></img>)
         }
-    }
+    };
 
     const dateOrUpload = () => {
         if(dateAndImageView === "prune" || dateAndImageView === "fertilize"){
@@ -62,11 +62,11 @@ function PlantView({session, plantID, closeButton, editButton, bgColor}){
         } else if(dateAndImageView === "upload"){
             return(<ImageForm session={session} close={dateAndImage} imageForId={plantID} imageFor={"plant"} />)
         }
-    }
+    };
 
     const refreshPage = ()=>{
         window.location.reload();
-       }
+    };
 
     const handleDelete = async (e) => {
         e.preventDefault();
@@ -84,7 +84,7 @@ function PlantView({session, plantID, closeButton, editButton, bgColor}){
             console.error('Error saving note data:', error.message);
         } refreshPage();
 
-    }
+    };
 
     return(
         <div>

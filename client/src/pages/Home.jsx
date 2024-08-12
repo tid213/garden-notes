@@ -30,7 +30,6 @@ function Home () {
                         <Link to="/signup" className="inline-block mt-2 lg:mt-0 lg:ml-4 bg-customOrange w-8/12 lg:w-3/12 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign Up</Link>
                     </div>
                 </div>
-
                 </div>
             </section>
             <section className="container mx-auto py-8 ">

@@ -30,11 +30,11 @@ function NoteView({noteID, closeButton, editButton}){
         }
         fetchNoteData();
         
-    }, [noteID])
+    }, [noteID]);
 
     const refreshPage = ()=>{
         window.location.reload();
-       }
+    };
 
     const handleNoteChange = (event) => {
         setEditedNote(event.target.value);
@@ -52,7 +52,7 @@ function NoteView({noteID, closeButton, editButton}){
         } catch (error) {
           console.error('Error saving note data:', error.message);
         } refreshPage();
-      };
+    };
 
     const handleDelete = async (e) => {
         e.preventDefault();
@@ -70,7 +70,7 @@ function NoteView({noteID, closeButton, editButton}){
             console.error('Error saving note data:', error.message);
         } refreshPage();
 
-    }
+    };
 
     return(
         <div className='w-screen'>

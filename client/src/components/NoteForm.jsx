@@ -21,7 +21,7 @@ const NoteForm = ({session, closeButton}) => {
 
   const refreshPage = ()=>{
     window.location.reload();
-   }
+  };
 
 
   useEffect(() => {
