@@ -28,24 +28,24 @@ function PlantList({session, plantData}){
     };
 
     return(
-    <div>
-        <div className='absolute mt-24'>{plantViewer()}</div>
-        <div className="grid lg:grid-cols-4 grid-cols-2 gap-4 ml-4 mr-4">
-        {plantData.map(function(data) {
-            return(
-                <div key={data.id} 
-                onClick={()=>{setPlantID(data.id);plantViewClick()}}
-                className="bg-customLightGreen p-4 rounded-lg shadow-md cursor-pointer">
-                    <div className='lg:h-60 lg:w-60 bg-cover bg-center overflow-hidden flex items-center'>
-                    {data.plant_image ? 
-                    <img className="w-full h-full object-cover" src={data.plant_image} /> : 
-                    <img className='w-full h-full object-cover' src={tempImage}></img>}
+        <div>
+            <div className='absolute mt-24'>{plantViewer()}</div>
+            <div className="grid lg:grid-cols-4 grid-cols-2 gap-4 ml-4 mr-4">
+            {plantData.map(function(data) {
+                return(
+                    <div key={data.id} 
+                    onClick={()=>{setPlantID(data.id);plantViewClick()}}
+                    className="bg-customLightGreen p-4 rounded-lg shadow-md cursor-pointer">
+                        <div className='lg:h-60 lg:w-60 bg-cover bg-center overflow-hidden flex items-center'>
+                        {data.plant_image ? 
+                        <img className="w-full h-full object-cover" src={data.plant_image} /> : 
+                        <img className='w-full h-full object-cover' src={tempImage}></img>}
+                        </div>
+                        <p className="text-white font-bold text-xl mt-4">{data.plant_name}</p>
                     </div>
-                    <p className="text-white font-bold text-xl mt-4">{data.plant_name}</p>
-                </div>
-            )
-        })}
-    </div>
+                )
+            })}
+        </div>
     </div>
     )
 }
