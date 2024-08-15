@@ -4,7 +4,6 @@ import { supabase } from '../supabaseClient';
 
 const ChangePassword = () => {
 
-
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -26,7 +25,6 @@ const ChangePassword = () => {
       console.error('Error fetching session:', error.message);
     }
   };
-  
 
   const handleChangePassword = async (e) => {
     e.preventDefault();

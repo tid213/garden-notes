@@ -33,7 +33,6 @@ function Dashboard ({session}) {
     const colors = ["bg-lime-200","bg-lime-200", "bg-amber-200", "bg-orange-200"];
     const [colorIndices, setColorIndices] = useState([]);
     
-
     useEffect(()=>{
         const fetchUserInfo = async () => {
             try {
@@ -154,7 +153,7 @@ function Dashboard ({session}) {
 
     const navbarFormToggle = (data) => {
         setFormView(data);
-    }
+    };
 
     //Form buttons
 
@@ -162,7 +161,7 @@ function Dashboard ({session}) {
         if(data === true){
             setFormView("")
         }
-    }
+    };
 
     const editButton = (data) => {
         if(data === "plant" || data === "note" || data === "plot"){
@@ -311,6 +310,6 @@ function Dashboard ({session}) {
             </div>
         )
     }
-}
+};
 
 export default React.memo(Dashboard);
