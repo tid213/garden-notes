@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const { createClient } = require('@supabase/supabase-js');
 const AWS = require('aws-sdk');
 
-dotenv.config()
+dotenv.config();
 
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
@@ -93,7 +93,7 @@ app.get('/weather/:zip', verifySupabaseToken,  async (req, res) => {
         console.error('Error fetching weather data:', error);
         res.status(500).json({ error: 'Internal Server Error' });
       }
-})
+});
 
 /* Public NoteBook functions and API */
 
@@ -180,7 +180,7 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'public', 'index.html'));
   });
-}
+};
 
 app.listen(process.env.PORT || 8000, () => {
   console.log(`Server is running on port 8000.`);

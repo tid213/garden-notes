@@ -7,14 +7,12 @@ function NoteBook(){
     useState(()=>{
         const fetchData = async () => {
             try {
-          
               const response = await fetch('http://localhost:8000/notebook/42069', {
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/json'
                 },
               });
-          
               if (response.ok) {
                 const data = await response.json();
                 setMessage(data.data)
