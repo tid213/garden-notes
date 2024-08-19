@@ -7,7 +7,7 @@ function DateSelect({plantId, pruneOrFert, close}){
 
     const refreshPage = ()=>{
         window.location.reload();
-     }
+     };
     
     const submitFertilizeDate = async (event) => {
         event.preventDefault();
@@ -19,7 +19,7 @@ function DateSelect({plantId, pruneOrFert, close}){
             console.log(error)
         }
           refreshPage()
-    }
+    };
 
     const submitPruneDate = async (event) => {
         event.preventDefault();
@@ -31,7 +31,7 @@ function DateSelect({plantId, pruneOrFert, close}){
             console.log(error)
         }
           refreshPage()
-    }
+    };
 
     if (pruneOrFert === "prune") {
         return (
@@ -63,6 +63,6 @@ function DateSelect({plantId, pruneOrFert, close}){
         );
     }
     
-}
+};
 
 export default DateSelect;

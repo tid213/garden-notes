@@ -1,5 +1,5 @@
 import tempImage from '../images/temp-image.png';
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import PlantView from './PlantView';
 
 function PlantList({session, plantData}){

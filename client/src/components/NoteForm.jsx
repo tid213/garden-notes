@@ -23,7 +23,6 @@ const NoteForm = ({session, closeButton}) => {
     window.location.reload();
   };
 
-
   useEffect(() => {
     const fetchUserPlantsAndPlots = async () => {
       try {

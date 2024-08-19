@@ -70,7 +70,6 @@ function PlantView({session, plantID, closeButton, editButton, bgColor}){
 
     const handleDelete = async (e) => {
         e.preventDefault();
-
         try {
             const { error } = await supabase
             .from('plants')

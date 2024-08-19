@@ -56,7 +56,6 @@ function NoteView({noteID, closeButton, editButton}){
 
     const handleDelete = async (e) => {
         e.preventDefault();
-
         try {
             const { error } = await supabase
             .from('notes')
