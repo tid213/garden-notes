@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import closeImage from '../images/x.svg';
+import shareIcon from '../images/share.svg';
 
 const AccountForm = ({session, closeButton}) => {
   const [username, setUsername] = useState('');
@@ -10,6 +11,7 @@ const AccountForm = ({session, closeButton}) => {
   const [zipCode, setZipCode] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const [shareLink, setShareLink] = useState(false)
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -38,7 +40,27 @@ const AccountForm = ({session, closeButton}) => {
         setLoading(false);
       }
     };
+
+    const fetchShareLink = async () =>{
+      try{
+        const { data, error } = await supabase
+          .from('notebooks')
+          .select('share_link')
+          .eq('user_id', session.user.id)
+          if (error) {
+            throw error;
+          }
+          if (data){
+            setShareLink(data)
+            console.log(data)
+          }
+      } catch (error) {
+        console.error('Error fetching profile:', error.message);
+        setMessage('Error fetching profile. Please try again.');
+      }
+    }
     fetchProfile();
+    fetchShareLink();
   }, [session.user.id, session]);
 
   const handleSubmit = async (e) => {
@@ -73,7 +95,11 @@ const AccountForm = ({session, closeButton}) => {
   return (
     <div className="inter relative mt-12 max-w-sm lg:w-96 mx-auto p-6 bg-white rounded-lg shadow-md border border-gray-200">
       <div onClick={()=> closeButton(true)} className='absolute text-xl font-bold right-4 top-2 cursor-pointer'><img src={closeImage} className='h-4 w-4 ' alt="close button"></img></div>
-      <h2 className="text-2xl font-normal mb-4 text-slate-700">Account</h2>
+      <h2 className="text-2xl font-normal text-slate-700">Account</h2>
+      <div className='flex justify-center mt-0 mb-4'>
+        {shareLink ? <p>{shareLink[0].share_link}</p> : <p>Create</p>}
+        <p>Create share link to show off your garden</p>
+      </div>
       <form onSubmit={handleSubmit} >
         <div className='mb-4'>
           <label className='block text-gray-700'>Username:</label>
@@ -105,7 +131,7 @@ const AccountForm = ({session, closeButton}) => {
         </div>
         <button className="mt-4 w-full bg-lime-500 hover:bg-lime-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
         type="submit" disabled={loading}>Save</button>
-        <button className="mt-4 w-full bg-customDarkGreen hover:bg-black text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">
+        <button className="mt-2 w-full bg-customDarkGreen hover:bg-black text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">
             Change Password
         </button>
       </form>

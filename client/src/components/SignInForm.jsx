@@ -40,7 +40,7 @@ const SignInForm = () => {
 
   return (
     <div className="max-w-sm mx-auto inter p-6 bg-white rounded-lg shadow-md">
-  <h2 className="text-xl text-gray-700 mb-8">User sign in</h2>
+  <h2 className="text-xl text-gray-700 mb-4">Sign In</h2>
   <form onSubmit={handleSignIn}>
     <div className="mb-4">
       <label className="block text-gray-700">Email:</label>
@@ -86,7 +86,7 @@ const SignInForm = () => {
     Continue with Google
 </button>
   {message && <p className="mt-4 text-red-500">{message}</p>}
-  <div className="mt-4 text-center">
+  <div className=" text-center">
         <Link to="/forgotpassword" className="text-green-800 hover:text-green-600">Forgot password</Link>
       </div>
   <div className="mt-4 text-center">

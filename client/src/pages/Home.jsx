@@ -22,7 +22,6 @@ function Home () {
                     width={264}
                 />
                 <div className="w-full lg:w-6/12 mx-auto text-center">
-                    <p className="font-normal mb-4 px-8 text-2xl text-customDarkGreen">Welcome to</p>
                     <h1 className="text-5xl text-customDarkGreen font-bold mb-4 lg:mb-8">gardennotes<b className="text-customOrange">.</b><b className="text-customMidGreen">me</b></h1>
                     <p className="font-light px-8 text-lg text-black">Your all-in-one solution for plant lovers. Whether you're a seasoned gardener or just starting out, gardennotes.me helps you keep track of all your plants effortlessly.</p>
                     <div className="flex flex-col w-full lg:justify-center items-center mt-6 lg:flex-row">
