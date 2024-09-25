@@ -52,7 +52,6 @@ const AccountForm = ({session, closeButton}) => {
           }
           if (data){
             setShareLink(data)
-            console.log(data)
           }
       } catch (error) {
         console.error('Error fetching profile:', error.message);
@@ -97,8 +96,7 @@ const AccountForm = ({session, closeButton}) => {
       <div onClick={()=> closeButton(true)} className='absolute text-xl font-bold right-4 top-2 cursor-pointer'><img src={closeImage} className='h-4 w-4 ' alt="close button"></img></div>
       <h2 className="text-2xl font-normal text-slate-700">Account</h2>
       <div className='flex justify-center mt-0 mb-4'>
-        {shareLink ? <p>{shareLink[0].share_link}</p> : <p>Create</p>}
-        <p>Create share link to show off your garden</p>
+        {shareLink ? <p>gardennotes.me/noteboook/{shareLink[0].share_link}</p> : <p>Create</p>}
       </div>
       <form onSubmit={handleSubmit} >
         <div className='mb-4'>
