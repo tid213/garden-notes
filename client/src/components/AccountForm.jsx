@@ -91,6 +91,24 @@ const AccountForm = ({session, closeButton}) => {
     }
   };
 
+  const createShareLink = async () => {
+    const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let result = '';
+    for (let i = 0; i < 15; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    
+    const { error } = await supabase
+      .from('notebooks')
+      .insert({
+        user_id: session.user.id,
+        share_link: result
+      }) 
+      if(error){
+        console.log(error)
+      }
+};
+
   return (
     <div className="inter relative mt-12 max-w-sm lg:w-96 mx-auto p-6 bg-white rounded-lg shadow-md border border-gray-200">
       <div onClick={()=> closeButton(true)} className='absolute text-xl font-bold right-4 top-2 cursor-pointer'><img src={closeImage} className='h-4 w-4 ' alt="close button"></img></div>
