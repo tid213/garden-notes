@@ -45,12 +45,12 @@ const AccountForm = ({session, closeButton}) => {
       try{
         const { data, error } = await supabase
           .from('notebooks')
-          .select('share_link')
+          .select()
           .eq('user_id', session.user.id)
           if (error) {
             throw error;
           }
-          if (data){
+          if (data && data.length > 0){
             setShareLink(data)
           }
       } catch (error) {
@@ -94,10 +94,9 @@ const AccountForm = ({session, closeButton}) => {
   const createShareLink = async () => {
     const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     let result = '';
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 10; i++) {
     result += characters.charAt(Math.floor(Math.random() * characters.length));
     }
-    
     const { error } = await supabase
       .from('notebooks')
       .insert({
@@ -107,6 +106,8 @@ const AccountForm = ({session, closeButton}) => {
       if(error){
         console.log(error)
       }
+      setShareLink(result)
+
 };
 
   return (
@@ -114,7 +115,10 @@ const AccountForm = ({session, closeButton}) => {
       <div onClick={()=> closeButton(true)} className='absolute text-xl font-bold right-4 top-2 cursor-pointer'><img src={closeImage} className='h-4 w-4 ' alt="close button"></img></div>
       <h2 className="text-2xl font-normal text-slate-700">Account</h2>
       <div className='flex justify-center mt-0 mb-4'>
-        {shareLink ? <p>gardennotes.me/noteboook/{shareLink[0].share_link}</p> : <p>Create</p>}
+        {shareLink ? 
+          <p className='text-sm'>gardennotes.me/noteboook/{shareLink[0].share_link}</p> : 
+          <p className='text-sm' onClick={()=> createShareLink()}>Create Share Notebook Link</p>
+        }
       </div>
       <form onSubmit={handleSubmit} >
         <div className='mb-4'>
