@@ -109,13 +109,19 @@ const AccountForm = ({session, closeButton}) => {
       setShareLink(result)
   };
 
+  const copyToClipboard = (data) => {
+    var link = document.getElementById(data).innerHTML;
+    navigator.clipboard.writeText(link);
+    console.log(link)
+  }
+
   return (
     <div className="inter relative mt-12 max-w-sm lg:w-96 mx-auto p-6 bg-white rounded-lg shadow-md border border-gray-200">
       <div onClick={()=> closeButton(true)} className='absolute text-xl font-bold right-4 top-2 cursor-pointer'><img src={closeImage} className='h-4 w-4 ' alt="close button"></img></div>
       <h2 className="text-2xl font-normal text-slate-700">Account</h2>
       <div className='flex justify-center mt-0 mb-4'>
         {shareLink ? 
-          <p className='text-sm'>gardennotes.me/noteboook/{shareLink[0].share_link}</p> : 
+          <p className='text-sm' id='link' onClick={()=> copyToClipboard('link')}>gardennotes.me/noteboook/{shareLink[0].share_link}</p> : 
           <p className='text-sm' onClick={()=> createShareLink()}>Create Share Notebook Link</p>
         }
       </div>
