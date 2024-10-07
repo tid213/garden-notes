@@ -113,7 +113,7 @@ const AccountForm = ({session, closeButton}) => {
     var link = document.getElementById(data).innerHTML;
     navigator.clipboard.writeText(link);
     console.log(link)
-  }
+  };
 
   return (
     <div className="inter relative mt-12 max-w-sm lg:w-96 mx-auto p-6 bg-white rounded-lg shadow-md border border-gray-200">
