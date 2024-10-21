@@ -7,7 +7,7 @@ const NavBar = ({navbarFormToggle, userSignedIn}) => {
 
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [isTransparent, setIsTransparent] = useState(false)
+  const [isTransparent, setIsTransparent] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {

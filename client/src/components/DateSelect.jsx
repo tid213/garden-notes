@@ -3,7 +3,7 @@ import { supabase } from '../supabaseClient';
 
 function DateSelect({plantId, pruneOrFert, close}){
 
-    const [date, setDate] = useState(null)
+    const [date, setDate] = useState(null);
 
     const refreshPage = ()=>{
         window.location.reload();
