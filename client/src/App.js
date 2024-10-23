@@ -23,7 +23,7 @@ function App() {
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     })
-  }, [])
+  }, []);
 
   return (
     <div className="App">

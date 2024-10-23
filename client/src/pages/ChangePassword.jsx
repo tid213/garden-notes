@@ -11,7 +11,7 @@ const ChangePassword = () => {
 
   useEffect(()=>{
     fetchSession()
-  }, [])
+  }, []);
 
   const fetchSession = async () => {
     try {
