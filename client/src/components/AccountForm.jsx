@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import closeImage from '../images/x.svg';
-import shareIcon from '../images/share.svg';
+//import shareIcon from '../images/share.svg';
 
 const AccountForm = ({session, closeButton}) => {
   const [username, setUsername] = useState('');
@@ -11,7 +11,7 @@ const AccountForm = ({session, closeButton}) => {
   const [zipCode, setZipCode] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
-  const [shareLink, setShareLink] = useState(false)
+  const [shareLink, setShareLink] = useState(false);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -112,7 +112,6 @@ const AccountForm = ({session, closeButton}) => {
   const copyToClipboard = (data) => {
     var link = document.getElementById(data).innerHTML;
     navigator.clipboard.writeText(link);
-    console.log(link)
   };
 
   return (
