@@ -54,7 +54,7 @@ function Weather({session, zipCode, closeButton}){
           return rain;
       }
        else{
-          return clearDay
+          return clearDay;
       }
   }    
   if (loadingWeather === true){
@@ -82,6 +82,6 @@ function Weather({session, zipCode, closeButton}){
         </div>
     )
   }
-}
+};
 
 export default Weather;
