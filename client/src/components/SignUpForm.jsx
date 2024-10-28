@@ -36,7 +36,7 @@ const SignUpForm = () => {
     if (error) {
       throw error;
     }
-  }
+  };
 
   return (
     <div className=" inter max-w-sm mx-auto p-6 bg-white rounded-lg shadow-md">
